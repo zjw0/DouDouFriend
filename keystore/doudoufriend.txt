@@ -1,0 +1,9 @@
+cn.appoa.doudoufriend
+
+证书指纹:
+Alias: doudoufriend
+md5: 8b90ead1dde9cba3eb5cf6d28b7d5030
+MD5: 8B:90:EA:D1:DD:E9:CB:A3:EB:5C:F6:D2:8B:7D:50:30
+SHA1: A3:79:21:52:0D:94:98:DE:76:8E:F6:B7:31:DC:0F:2E:CE:09:B7:56
+
+密码: 100605
