@@ -1,18 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.appoa.doudoufriend.MainActivity">
+    android:background="@color/colorWhite">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RadioGroup
+        android:id="@+id/rg_main_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <RadioButton
+            android:id="@+id/btn_main_tab1"
+            style="@style/MainTabButton"
+            android:drawableTop="@drawable/main_tab1_btn_image"
+            android:text="@string/first_tab_name" />
+
+        <RadioButton
+            android:id="@+id/btn_main_tab2"
+            style="@style/MainTabButton"
+            android:drawableTop="@drawable/main_tab2_btn_image"
+            android:text="@string/second_tab_name" />
+
+        <RadioButton
+            android:id="@+id/btn_main_tab3"
+            style="@style/MainTabButton"
+            android:drawableTop="@drawable/main_tab3_btn_image"
+            android:text="@string/third_tab_name" />
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/main_divider_bottom"
+        style="@style/HorizontalLine"
+        android:layout_above="@+id/rg_main_tab" />
+
+    <FrameLayout
+        android:id="@+id/fl_main_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_divider_bottom" />
+
+</RelativeLayout>

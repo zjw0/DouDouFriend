@@ -9,14 +9,19 @@ android {
             storePassword '100605'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 27
     defaultConfig {
         applicationId "cn.appoa.doudoufriend"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
+        }
     }
     buildTypes {
         release {
@@ -25,13 +30,40 @@ android {
             signingConfig signingConfigs.config
         }
     }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
+            if (variant.buildType.name.equals('debug')) {
+                outputFileName = "GasManageSource_${date}_${versionName}_${versionCode}_debug.apk"
+            }
+            if (variant.buildType.name.equals('release')) {
+                outputFileName = "GasManageSource_${date}_${versionName}_${versionCode}.apk"
+            }
+        }
+    }
+    sourceSets.main {
+        jniLibs.srcDirs 'src/main/jniLibs'
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"//解决编译内存不足
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.wangzhen:dark-status-bar:1.0.0'
+    implementation 'com.github.zjw0.MyWork:AFramework:v1.0.2'
+    implementation 'com.github.zjw0.MyWork:SmartRefreshLayoutFragment:v1.0.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    implementation 'com.zhy:autolayout:1.4.5'
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'com.mindorks.android:prdownloader:0.4.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.44'
 }
