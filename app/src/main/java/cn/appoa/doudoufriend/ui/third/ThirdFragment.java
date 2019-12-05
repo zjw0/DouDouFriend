@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wangzhen.statusbar.DarkStatusBar;
+
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.base.BaseFragment;
 
@@ -23,7 +25,7 @@ public class ThirdFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-
+        DarkStatusBar.get().fitLight(mActivity);//亮色模式
     }
 
 
