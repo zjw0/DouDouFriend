@@ -11,7 +11,6 @@ import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.aframework.utils.SpUtils;
 import cn.appoa.aframework.view.ILoginView;
 import cn.appoa.doudoufriend.R;
-import zm.bus.event.BusProvider;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AfActivity<P>
         implements ILoginView {

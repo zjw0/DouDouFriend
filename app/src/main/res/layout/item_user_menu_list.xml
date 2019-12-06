@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toos="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_menu_name"
+        style="@style/SimpleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:drawableLeft="@drawable/menu1"
+        android:drawableRight="@drawable/next_step"
+        android:drawablePadding="@dimen/padding_normal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_big"
+        toos:text="@string/app_name" />
+
+    <View style="@style/HorizontalLine" />
+
+</LinearLayout>

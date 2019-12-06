@@ -69,6 +69,12 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask" />
+        <!-- 设置 -->
+        <activity
+            android:name=".ui.third.activity.SettingActivity" />
+        <!-- 关于 -->
+        <activity
+            android:name=".ui.WebViewActivity" />
 
     </application>
 
