@@ -69,6 +69,9 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask" />
+        <!-- 添加月记 -->
+        <activity
+            android:name=".ui.third.activity.AddDateActivity" />
         <!-- 设置 -->
         <activity
             android:name=".ui.third.activity.SettingActivity" />

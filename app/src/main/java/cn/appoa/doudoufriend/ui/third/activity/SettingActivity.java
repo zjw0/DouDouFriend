@@ -76,7 +76,11 @@ public class SettingActivity extends BaseActivity
 
     @Override
     public void initData() {
-
+        try {
+            tv_cache_size.setText(AtyUtils.getTotalCacheSize(mActivity));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

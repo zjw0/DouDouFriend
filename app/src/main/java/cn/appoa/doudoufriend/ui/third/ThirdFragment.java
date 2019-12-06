@@ -19,6 +19,7 @@ import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.adapter.UserMenuListAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.UserMenuList;
+import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
 
 /**
@@ -53,7 +54,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void initData() {
         menuLists.clear();
-        menuLists.add(new UserMenuList(1, R.drawable.menu1, "我的凭证", SettingActivity.class));
+        menuLists.add(new UserMenuList(1, R.drawable.menu1, "添加月记", AddDateActivity.class));
         menuLists.add(new UserMenuList(2, R.drawable.menu1, "更多设置", SettingActivity.class));
         menuListAdapter.setNewData(menuLists);
         menuListAdapter.setOnItemClickListener(this);
@@ -70,7 +71,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
         if (item.clazz == null) return;
         Intent intent = null;
         switch (item.MenuIntro) {
-            case "我的定金凭证":
+            case "添加月记":
                 intent = new Intent(mActivity, item.clazz);
                 break;
             case "更多设置":

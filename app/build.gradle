@@ -34,10 +34,10 @@ android {
         variant.outputs.all {
             def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
             if (variant.buildType.name.equals('debug')) {
-                outputFileName = "GasManageSource_${date}_${versionName}_${versionCode}_debug.apk"
+                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}_debug.apk"
             }
             if (variant.buildType.name.equals('release')) {
-                outputFileName = "GasManageSource_${date}_${versionName}_${versionCode}.apk"
+                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}.apk"
             }
         }
     }
@@ -71,4 +71,12 @@ dependencies {
     implementation 'com.wangzhen:dark-status-bar:1.0.0'
     implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.0'
     implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.0'
+    implementation 'com.necer.ncalendar:ncalendar:4.3.8'
+}
+
+configurations.all {
+    resolutionStrategy {
+//        force 'com.android.support:support-v4:27.1.1'
+        force 'com.android.support:design:27.1.1'
+    }
 }

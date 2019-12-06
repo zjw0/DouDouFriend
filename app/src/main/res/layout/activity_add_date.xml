@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toos="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgLighterGray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_start"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"
+        android:layout_marginTop="@dimen/padding_big"
+        android:background="@drawable/shape_solid_white_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_big"
+        android:paddingRight="@dimen/padding_big">
+
+        <TextView
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:text="开始时间"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_start"
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_small"
+            android:drawableRight="@drawable/next_step"
+            android:gravity="right|center_vertical"
+            android:hint="请选择"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_end"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"
+        android:layout_marginTop="@dimen/padding_big"
+        android:background="@drawable/shape_solid_white_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_big"
+        android:paddingRight="@dimen/padding_big">
+
+        <TextView
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:text="结束时间"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_end"
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_small"
+            android:drawableRight="@drawable/next_step"
+            android:gravity="right|center_vertical"
+            android:hint="请选择"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_confirm_add"
+        style="@style/SimpleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"
+        android:layout_marginTop="@dimen/padding_huge"
+        android:background="@drawable/shape_solid_theme_50dp"
+        android:text="添加"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_big" />
+
+
+
+
+</LinearLayout>

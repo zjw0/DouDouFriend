@@ -19,7 +19,7 @@ import cn.appoa.doudoufriend.net.API;
 public class WebViewActivity extends BaseActivity {
 
     /**
-     * 0我的消息详情 1关于客优乐
+     * 0我的详情 1关于我们
      */
     private int type;
     private String id;
@@ -79,7 +79,8 @@ public class WebViewActivity extends BaseActivity {
                 Contents = start + "data.Contents";
                 break;
             default:
-                Contents = "data.Contents";
+//                Contents = "data.Contents";
+                Contents = "关于我们";
                 break;
         }
         webView.loadDataWithBaseURL(API.IMAGE_URL, MyApplication.addData + Contents,
