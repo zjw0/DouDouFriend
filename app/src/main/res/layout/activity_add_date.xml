@@ -87,7 +87,4 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_big" />
 
-
-
-
 </LinearLayout>

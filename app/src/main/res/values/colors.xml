@@ -21,4 +21,10 @@
     <color name="colorPointRed">#f42c29</color>
     <color name="colorShapeGray">#d7d7d7</color>
     <color name="colorPink">#ff4081</color>
+
+    <!--日历颜色-->
+    <color name="hollowCircleColor">#00c3aa</color>
+    <color name="selectCircleColor">#00c3aa</color>
+    <color name="todaySolarTextColor">#ff00ff</color>
+
 </resources>

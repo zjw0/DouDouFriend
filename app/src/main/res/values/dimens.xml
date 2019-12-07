@@ -8,5 +8,6 @@
     <dimen name="big_image_width">180dp</dimen>
     <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_80">80dp</dimen>
+    <dimen name="month_calendar_height">300dp</dimen>
 
 </resources>

@@ -1,7 +1,9 @@
 package cn.appoa.doudoufriend.base;
 
 import android.content.Intent;
+import android.view.View;
 
+import butterknife.ButterKnife;
 import cn.appoa.aframework.fragment.AfFragment;
 import cn.appoa.aframework.presenter.BasePresenter;
 import cn.appoa.aframework.utils.AtyUtils;
@@ -12,6 +14,16 @@ import zm.bus.event.BusProvider;
 
 public abstract class BaseFragment<P extends BasePresenter> extends AfFragment<P>
         implements ILoginView {
+
+    @Override
+    public void bindButterKnife(View view) {
+        ButterKnife.bind(this, view);
+    }
+
+    @Override
+    public void unBindButterKnife() {
+        ButterKnife.bind(mActivity).unbind();
+    }
 
     @Override
     public boolean isLogin() {

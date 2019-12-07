@@ -2,6 +2,7 @@ package cn.appoa.doudoufriend.ui.third.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import butterknife.BindView;
 import cn.appoa.aframework.listener.OnCallbackListener;
 import cn.appoa.aframework.titlebar.BaseTitlebar;
 import cn.appoa.aframework.titlebar.DefaultTitlebar;
@@ -57,7 +59,6 @@ public class AddDateActivity extends BaseActivity
     @Override
     public void initView() {
         super.initView();
-
         ll_start = (LinearLayout) findViewById(R.id.ll_start);
         tv_start = (TextView) findViewById(R.id.tv_start);
         tv_end = (TextView) findViewById(R.id.tv_end);
@@ -108,12 +109,25 @@ public class AddDateActivity extends BaseActivity
                 endDialogDate.showDatePickerDialog("结束日期", nowDate);
                 break;
             case R.id.tv_confirm_add:
-                AtyUtils.showShort(mActivity,"添加成功",false);
-                finish();
+                //保存记录
+                saveDate();
                 break;
             default:
                 break;
         }
+    }
+
+    private void saveDate() {
+        if (TextUtils.isEmpty(AtyUtils.getText(tv_start))) {
+            AtyUtils.showShort(mActivity, "请选择开始日期", false);
+            return;
+        }
+        if (TextUtils.isEmpty(AtyUtils.getText(tv_end))) {
+            AtyUtils.showShort(mActivity, "请选择结束日期", false);
+            return;
+        }
+        AtyUtils.showShort(mActivity, "添加成功", false);
+        finish();
     }
 
 }
