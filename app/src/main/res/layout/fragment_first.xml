@@ -37,6 +37,15 @@
             android:textColor="@color/colorText"
             android:textSize="@dimen/text_normal" />
 
+        <TextView
+            android:id="@+id/tv_today"
+            style="@style/SimpleTextView"
+            android:layout_marginLeft="@dimen/height_little"
+            android:text="今天"
+            android:background="@drawable/point_theme"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
     </LinearLayout>
 
 
@@ -55,6 +64,44 @@
         app:selectCircleColor="@color/selectCircleColor"
         app:todaySolarTextColor="@color/todaySolarTextColor" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_marginTop="@dimen/padding_large"
+        android:paddingLeft="@dimen/padding_big"
+        android:paddingRight="@dimen/padding_big"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_start_date"
+            style="@style/SimpleTextView"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:text="开始时间：2019-12-12"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            style="@style/SimpleTextView"
+            android:gravity="left"
+            android:layout_weight="2"
+            android:text="结束时间：2019-12-12"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_days"
+            style="@style/SimpleTextView"
+            android:layout_weight="1"
+            android:text="3天"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_confirm_add"
         style="@style/SimpleTextView"
@@ -62,7 +109,7 @@
         android:layout_height="@dimen/height_normal"
         android:layout_marginLeft="@dimen/padding_big"
         android:layout_marginRight="@dimen/padding_big"
-        android:layout_marginTop="@dimen/height_normal"
+        android:layout_marginTop="@dimen/height_little"
         android:background="@drawable/shape_solid_theme_50dp"
         android:text="添加"
         android:textColor="@color/colorWhite"
