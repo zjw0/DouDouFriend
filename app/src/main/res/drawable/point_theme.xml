@@ -10,7 +10,7 @@
         android:color="@color/colorTheme" />
 
     <size
-        android:height="@dimen/height_little"
-        android:width="@dimen/height_little" />
+        android:height="@dimen/dp_36"
+        android:width="@dimen/dp_36" />
 
 </shape>

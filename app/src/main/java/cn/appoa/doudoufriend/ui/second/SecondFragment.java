@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import cn.appoa.aframework.listener.VolleyDatasListener;
 import cn.appoa.aframework.listener.VolleyErrorListener;
 import cn.appoa.aframework.utils.AtyUtils;

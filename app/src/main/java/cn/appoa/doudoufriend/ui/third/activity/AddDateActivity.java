@@ -143,13 +143,13 @@ public class AddDateActivity extends BaseActivity
             tv_days.setText("");
             return;
         }
-        days = TimeDifferencesUtils.getTimeDifferences(AtyUtils.getText(tv_end) + " 00:00:00",
-                AtyUtils.getText(tv_start) + " 00:00:00");
+        days = TimeDifferencesUtils.getTimeDifferences(AtyUtils.getText(tv_start) + " 00:00:00",
+                AtyUtils.getText(tv_end) + " 00:00:00");
         if(days <= 0){
-            AtyUtils.showShort(mActivity, "选择时间有误，请重新选择", false);
+            AtyUtils.showShort(mActivity, "选择日期有误，请重新选择", false);
             tv_days.setText("");
         }else {
-            tv_days.setText(days + "天");
+            tv_days.setText(days+1 + "天");
         }
         if(bo){
             saveDate();

@@ -14,12 +14,13 @@ public class TimeDifferencesUtils {
      * 获取时间差
      */
     public static int getTimeDifferences(String time1, String time2) {
-        if(DateUtils.getTimeCompareSize(time2,time1)){
+        if(DateUtils.getTimeCompareSize(time1,time2)){
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 Date d1 = df.parse(time1);
                 Date d2 = df.parse(time2);
-                long diff = d1.getTime() - d2.getTime();//两时间差,精确到毫秒
+                //long diff = d1.getTime() - d2.getTime();//两时间差,精确到毫秒
+                long diff = d2.getTime() - d1.getTime();//两时间差,精确到毫秒
                 long day = diff / 86400000;                         //以天数为单位取整
                 long hour = diff % 86400000 / 3600000;               //以小时为单位取整
                 long min = diff % 86400000 % 3600000 / 60000;       //以分钟为单位取整
