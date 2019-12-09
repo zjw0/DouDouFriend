@@ -47,7 +47,7 @@
             style="@style/SimpleTextView"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="持续天数"
+            android:text="持续周期"
             android:textColor="@color/colorText" />
 
         <TextView

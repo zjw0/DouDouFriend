@@ -3,6 +3,8 @@ package cn.appoa.doudoufriend.app;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import org.litepal.LitePal;
+
 import cn.appoa.aframework.app.AfApplication;
 import cn.appoa.aframework.utils.AESUtils;
 import cn.appoa.aframework.utils.AtyUtils;
@@ -26,6 +28,8 @@ public class MyApplication extends AfApplication {
         //JsonUtils.init(3, "status", "msg", "data");
         //初始化MobSDK
         //ShareSdkUtils.initShare(this);
+        //初始化LitePal
+        LitePal.initialize(this);
     }
 
     @Override
@@ -34,5 +38,4 @@ public class MyApplication extends AfApplication {
         // 分包
         MultiDex.install(base);
     }
-
 }

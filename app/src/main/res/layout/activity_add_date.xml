@@ -3,6 +3,8 @@
     xmlns:toos="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/padding_big"
+    android:paddingRight="@dimen/padding_big"
     android:background="@color/colorBgLighterGray"
     android:orientation="vertical">
 
@@ -10,8 +12,6 @@
         android:id="@+id/ll_start"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
-        android:layout_marginLeft="@dimen/padding_big"
-        android:layout_marginRight="@dimen/padding_big"
         android:layout_marginTop="@dimen/padding_big"
         android:background="@drawable/shape_solid_white_10dp"
         android:gravity="center_vertical"
@@ -44,8 +44,6 @@
         android:id="@+id/ll_end"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
-        android:layout_marginLeft="@dimen/padding_big"
-        android:layout_marginRight="@dimen/padding_big"
         android:layout_marginTop="@dimen/padding_big"
         android:background="@drawable/shape_solid_white_10dp"
         android:gravity="center_vertical"
@@ -74,13 +72,41 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_days"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:layout_marginTop="@dimen/padding_big"
+        android:background="@drawable/shape_solid_white_10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_big"
+        android:paddingRight="@dimen/padding_big">
+
+        <TextView
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:text="持续周期"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+        <TextView
+            android:id="@+id/tv_days"
+            style="@style/SimpleTextView"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/padding_normal"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_normal" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_confirm_add"
         style="@style/SimpleTextView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
-        android:layout_marginLeft="@dimen/padding_big"
-        android:layout_marginRight="@dimen/padding_big"
         android:layout_marginTop="@dimen/padding_huge"
         android:background="@drawable/shape_solid_theme_50dp"
         android:text="添加"

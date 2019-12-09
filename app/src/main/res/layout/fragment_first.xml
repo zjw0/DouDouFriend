@@ -33,7 +33,7 @@
             android:id="@+id/tv_moon_date"
             style="@style/SimpleTextView"
             android:layout_marginLeft="@dimen/padding_huge"
-            android:text="农历十一月十二"
+            android:text="农历十二月二十四"
             android:textColor="@color/colorText"
             android:textSize="@dimen/text_normal" />
 
