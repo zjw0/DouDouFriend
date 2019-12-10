@@ -58,7 +58,7 @@
             style="@style/SimpleTextView"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/padding_large"
+            android:layout_marginRight="@dimen/padding_small"
             android:text="今天"
             android:background="@drawable/point_theme"
             android:textColor="@color/colorText"

@@ -188,6 +188,7 @@ public class FirstFragment extends BaseFragment {
         isSave =false;
         tvMoonDate.setVisibility(View.VISIBLE);
         llTwoChoose.setVisibility(View.GONE);
+        ivBack.setVisibility(View.GONE);
         calendar.notifyCalendar();
         calendar.toToday();
         calendarOneSelected();
@@ -208,12 +209,12 @@ public class FirstFragment extends BaseFragment {
                     isSave = true;
                     tvMoonDate.setVisibility(View.GONE);
                     llTwoChoose.setVisibility(View.VISIBLE);
+                    ivBack.setVisibility(View.VISIBLE);
                     calendar.notifyCalendar();
                     calendar.toToday();
                     calendarMoreSelected();
                     tvConfirmAdd.setText("保存");
                     tvConfirmAdd.setBackgroundResource(R.drawable.shape_solid_green_50dp);
-                    ivBack.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tv_sun_date:
@@ -221,15 +222,17 @@ public class FirstFragment extends BaseFragment {
                 break;
             case R.id.tv_moon_date:
                 List<MonthDate> monthDates = LitePal.findAll(MonthDate.class);
-                for (int i = 0; i < monthDates.size(); i++) {
-                    tvMoonDate.setText(monthDates.get(i).getEndDate());
+                if(monthDates.size() > 0){
+                    tvMoonDate.setText( "结束日期：" + monthDates.get(monthDates.size()-1).getEndDate());
+//                    for (int i = 0; i < monthDates.size(); i++) {
+//                        tvMoonDate.setText( "结束日期：" + monthDates.get(i).getEndDate());
+//                    }
                 }
                 break;
             case R.id.tv_today:
                 calendar.toToday();
                 break;
             case R.id.iv_back:
-                ivBack.setVisibility(View.GONE);
                 toOneSelected();
                 break;
             default:

@@ -33,7 +33,7 @@
                 android:layout_height="@dimen/height_big"
                 android:layout_marginTop="@dimen/height_little"
                 android:scaleType="centerCrop"
-                android:src="@drawable/icon_default_avatar"
+                android:src="@drawable/icon_pic"
                 app:super_image_view_shape_type="round" />
 
             <TextView

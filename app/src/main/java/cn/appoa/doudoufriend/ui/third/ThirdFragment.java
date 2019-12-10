@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wangzhen.statusbar.DarkStatusBar;
@@ -15,6 +16,7 @@ import com.wangzhen.statusbar.DarkStatusBar;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.adapter.UserMenuListAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
@@ -31,6 +33,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
     private RecyclerView rv_user_info;
     private UserMenuListAdapter menuListAdapter;
     private List<UserMenuList> menuLists;
+    private ImageView iv_user_avatar;
 
     @Override
     public View initFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
         menuLists = new ArrayList<>();
         menuListAdapter = new UserMenuListAdapter(R.layout.item_user_menu_list, menuLists);
         rv_user_info.setAdapter(menuListAdapter);
+        iv_user_avatar = view.findViewById(R.id.iv_user_avatar);
+        iv_user_avatar.setOnClickListener(this);
 
     }
 
@@ -62,7 +67,12 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_user_avatar:
+//                startActivity(new Intent(mActivity, ShowBigImageListActivity.class));
+                break;
 
+        }
     }
 
     @Override

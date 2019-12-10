@@ -72,7 +72,8 @@ public class SecondFragment extends BaseFragment {
         refreshLayout.setRefreshHeader(new ClassicsHeader(mActivity));
         refreshLayout.setRefreshFooter(new ClassicsFooter(mActivity));
         refreshLayout.setEnableRefresh(true);
-        refreshLayout.setEnableLoadMore(true);
+//        refreshLayout.setEnableLoadMore(true);
+        refreshLayout.setEnableLoadMore(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -81,15 +82,15 @@ public class SecondFragment extends BaseFragment {
                 initData();
             }
         });
-        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                page_index++;
-                //getDateList(page_index);
-                dataList.clear();
-                initData();
-            }
-        });
+//        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+//            @Override
+//            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+//                page_index++;
+//                //getDateList(page_index);
+//                dataList.clear();
+//                initData();
+//            }
+//        });
     }
 
 

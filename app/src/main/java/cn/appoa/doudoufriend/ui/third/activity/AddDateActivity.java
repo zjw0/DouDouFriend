@@ -34,7 +34,7 @@ public class AddDateActivity extends BaseActivity
     private TextView tv_end;
     private TextView tv_days;
     private TextView tv_confirm_add;
-    private String nowDate;
+    private String nowDate = "2018-01-01";
     private String afterDate;
     private String startDate = "";
     private String endDate = "";
@@ -74,13 +74,14 @@ public class AddDateActivity extends BaseActivity
 
     @Override
     public void initData() {
-        getMobSystemTime();
+        //getMobSystemTime();
         //选择时间
         dialogDate = new DatePickerDialog(mActivity, new OnCallbackListener() {
             @Override
             public void onCallback(int type, Object... obj) {
                 startDate = (String) obj[0];
                 tv_start.setText(startDate);
+                getMobSystemTime(startDate + " 00:00:00");
                 if(!TextUtils.isEmpty(AtyUtils.getText(tv_start)) && !TextUtils.isEmpty(AtyUtils.getText(tv_end))){
                     isSave(false);
                 }
@@ -98,10 +99,12 @@ public class AddDateActivity extends BaseActivity
         }, 2);
     }
 
-    private void getMobSystemTime() {
+    private void getMobSystemTime(String startDate) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
-        Date date = new Date(System.currentTimeMillis());
-        nowDate = simpleDateFormat.format(date);
+//        Date date = new Date(System.currentTimeMillis());
+//        nowDate = simpleDateFormat.format(date);
+//        afterDate = simpleDateFormat.format(AtyUtils.getDateAfter(date,1));
+        Date date = DateUtils.getTimetoDate(startDate);
         afterDate = simpleDateFormat.format(AtyUtils.getDateAfter(date,1));
     }
 
@@ -109,14 +112,16 @@ public class AddDateActivity extends BaseActivity
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_start:
-                dialogDate.initData(nowDate, "2100-01-01");
+//                dialogDate.initData(nowDate, "2100-01-01");
+//                dialogDate.showDatePickerDialog("开始日期", nowDate);
+                dialogDate.initData(nowDate, "2099-01-01");
                 dialogDate.showDatePickerDialog("开始日期", nowDate);
                 break;
             case R.id.tv_end:
                 if (TextUtils.isEmpty(AtyUtils.getText(tv_start))) {
                     AtyUtils.showShort(mActivity, "请先选择开始日期", false);
                 }else {
-                    endDialogDate.initData(afterDate, "2100-01-01");
+                    endDialogDate.initData(afterDate, "2099-01-01");
                     endDialogDate.showDatePickerDialog("结束日期", afterDate);
                 }
                 break;

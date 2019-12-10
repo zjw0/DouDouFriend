@@ -1,5 +1,6 @@
 package cn.appoa.doudoufriend;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -7,6 +8,9 @@ import android.view.KeyEvent;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
+import com.anthonycr.grant.PermissionsResultAction;
+
+import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.base.BaseActivity;
 import cn.appoa.doudoufriend.presenter.MainPresenter;
 import cn.appoa.doudoufriend.ui.first.FirstFragment;
@@ -153,6 +157,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 //
 //            @Override
 //            public void onDenied(String s) {
+//                AtyUtils.showShort(mActivity,"请开启权限",false);
 //            }
 //        });
 
