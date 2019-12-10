@@ -19,6 +19,8 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
+import org.litepal.LitePal;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,7 @@ import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.adapter.MyDateAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.DateList;
+import cn.appoa.doudoufriend.db.MonthDate;
 import zm.http.volley.ZmVolley;
 import zm.http.volley.request.ZmStringRequest;
 
@@ -82,7 +85,9 @@ public class SecondFragment extends BaseFragment {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 page_index++;
-                getDateList(page_index);
+                //getDateList(page_index);
+                dataList.clear();
+                initData();
             }
         });
     }
@@ -90,14 +95,25 @@ public class SecondFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        getDateList(page_index);
+        List<MonthDate> monthDates = LitePal.findAll(MonthDate.class);
+        for (int i = 0; i < monthDates.size() ; i++) {
+            DateList data = new DateList();
+            data.id = monthDates.get(i).getId();
+            data.startDate = monthDates.get(i).getStartDate();
+            data.endDate = monthDates.get(i).getEndDate();
+            data.days = monthDates.get(i).getDays();
+            dataList.add(data);
+        }
+        //getDateList(page_index);
+        getDateList();
     }
 
     //获取月记列表
-    private void getDateList(final int page_index) {
+//    private void getDateList(final int page_index) {
+    private void getDateList() {
         Map<String, String> params = new HashMap<>();
-        params.put("pageNo", page_index + "");
-        params.put("pageSize", "30");
+        //params.put("pageNo", page_index + "");
+        params.put("pageSize", "1000");
         ZmVolley.request(new ZmStringRequest(null, params,
                 new VolleyDatasListener<DateList>(this, "月记列表", DateList.class) {
                     @Override
@@ -115,23 +131,25 @@ public class SecondFragment extends BaseFragment {
                     public void onErrorResponse(VolleyError error) {
                         super.onErrorResponse(error);
                         //TODO 模拟数据
-                        List<DateList> datas = new ArrayList<>();
-                        for (int i = 0; i < 30; i++) {
-                            DateList data = new DateList();
-                            data.id = i + 1 + "";
-                            data.startDate = "2019-01-" + i+1;
-                            data.days = (i + 1) +"天";
-                            data.endDate = "2019-01-" + i+1;
-                            datas.add(data);
-                        }
-                        dataList.addAll(datas);
+//                        List<DateList> datas = new ArrayList<>();
+//                        for (int i = 0; i < 30; i++) {
+//                            DateList data = new DateList();
+//                            data.id = i + 1 + "";
+//                            data.startDate = "2019-01-" + i+1;
+//                            data.days = (i + 1) +"天";
+//                            data.endDate = "2019-01-" + i+1;
+//                            datas.add(data);
+//                        }
+//                        dataList.addAll(datas);
                         rvSecondDate.setAdapter(new MyDateAdapter(R.layout.item_date_list, dataList));
                         if(first){
                             first = false;
                         }else {
+                            refreshLayout.finishRefresh();//结束刷新
+                            refreshLayout.finishLoadMore();//结束加载
                             // 这两个方法是在加载失败时调用的
-                            refreshLayout.finishRefresh(false);//结束刷新（刷新失败）
-                            refreshLayout.finishLoadMore(false);//结束加载（加载失败）
+//                            refreshLayout.finishRefresh(false);//结束刷新（刷新失败）
+//                            refreshLayout.finishLoadMore(false);//结束加载（加载失败）
                         }
                     }
                 }), REQUEST_TAG);

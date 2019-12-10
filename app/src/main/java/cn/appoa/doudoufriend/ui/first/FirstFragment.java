@@ -1,11 +1,12 @@
 package cn.appoa.doudoufriend.ui.first;
 
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,19 +17,15 @@ import com.necer.enumeration.MultipleNumModel;
 import com.necer.enumeration.SelectedModel;
 import com.necer.listener.OnCalendarChangedListener;
 import com.necer.listener.OnCalendarMultipleChangedListener;
-import com.necer.listener.OnCalendarStateChangedListener;
 import com.necer.utils.CalendarUtil;
 
-import org.joda.time.DurationFieldType;
 import org.joda.time.LocalDate;
 import org.litepal.LitePal;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.base.BaseFragment;
@@ -63,7 +60,12 @@ public class FirstFragment extends BaseFragment {
     MonthCalendar calendar;
     @BindView(R.id.tv_confirm_add)
     TextView tvConfirmAdd;
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
     private boolean isSave = false;
+    private String startDate = "";
+    private String endDate = "";
+    private int daysDate = 0;
 
     @Override
     public View initFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -94,7 +96,10 @@ public class FirstFragment extends BaseFragment {
             public void onCalendarChange(BaseCalendar baseCalendar, int year, int month, LocalDate localDate) {
                 tvSunDate.setText(year + "年" + month + "月");
                 CalendarDate calendarDate = CalendarUtil.getCalendarDate(localDate);
-                tvMoonDate.setText(calendarDate.lunar.lunarYearStr + calendarDate.lunar.lunarMonthStr + calendarDate.lunar.lunarDayStr);
+                tvMoonDate.setText(calendarDate.lunar.lunarYearStr + "年" + calendarDate.lunar.lunarMonthStr + calendarDate.lunar.lunarDayStr);
+                tvStartDate.setText(null);
+                tvEndDate.setText(null);
+                tvDays.setText(null);
                 AtyUtils.i("当前页面选中", "是" + localDate);
             }
         });
@@ -106,16 +111,28 @@ public class FirstFragment extends BaseFragment {
         calendar.setOnCalendarMultipleChangedListener(new OnCalendarMultipleChangedListener() {
             @Override
             public void onCalendarChange(BaseCalendar baseCalendar, int year, int month, List<LocalDate> currectSelectList, List<LocalDate> allSelectList) {
+                int isBack = -1;
+                String startDay;
+                String endDay;
                 tvSunDate.setText(year + "年" + month + "月");
-                tvMoonDate.setVisibility(View.GONE);
-                llTwoChoose.setVisibility(View.VISIBLE);
 //                CalendarDate calendarDate = CalendarUtil.getCalendarDate(currectSelectList.get(0));
 //                tvMoonDate.setText(calendarDate.lunar.lunarYearStr + calendarDate.lunar.lunarMonthStr + calendarDate.lunar.lunarDayStr);
+                if(currectSelectList.size()<= 0){
+                    tvStartDate.setText("开始时间：");
+                    tvEndDate.setText("结束时间：");
+                    tvDays.setText("");
+                    isBack = 0;
+                }
+                if(currectSelectList.size()==1){
+                    startDay = String.valueOf(currectSelectList.get(0));
+                    tvStartDate.setText("开始时间：" + startDay);
+                    tvEndDate.setText("结束时间：");
+                    tvDays.setText("");
+                    isBack = 1;
+                }
                 if(currectSelectList.size()>=2){
-                    String startDay = String.valueOf(currectSelectList.get(0));
-                    String endDay = String.valueOf(currectSelectList.get(1));
-//                    tvStartDate.setText("开始时间：" + startDay);
-//                    tvEndDate.setText("结束时间：" + endDay);
+                    startDay = String.valueOf(currectSelectList.get(0));
+                    endDay = String.valueOf(currectSelectList.get(1));
                     int days = TimeDifferencesUtils.getTimeDifferences(startDay + " 00:00:00",
                             endDay + " 00:00:00");
                     if(days <= 0){
@@ -123,38 +140,84 @@ public class FirstFragment extends BaseFragment {
                         tvStartDate.setText("开始时间：" + endDay);
                         tvEndDate.setText("结束时间：" + startDay);
                         tvDays.setText(Math.abs(days)+1 + "天");
+                        isBack = 2;
                     }else {
                         tvStartDate.setText("开始时间：" + startDay);
                         tvEndDate.setText("结束时间：" + endDay);
                         tvDays.setText(days+1 + "天");
+                        isBack = 2;
                     }
+                    startDate = startDay;
+                    endDate = endDay;
+                    daysDate = Math.abs(days)+1;
+                }
+                switch (isBack) {
+                    case -1:
+                        AtyUtils.showShort(mActivity,"请选择开始和结束时间",false);
+                        isSave = false;
+                        break;
+                    case 0:
+                        AtyUtils.showShort(mActivity,"请选择开始和结束时间",false);
+                        isSave = false;
+                        break;
+                    case 1:
+                        AtyUtils.showShort(mActivity,"请选择结束时间",false);
+                        isSave = false;
+                        break;
+                    case 2:
+                        isSave = true;
+                        break;
+                    default:
+                        break;
                 }
             }
         });
     }
 
+    private void saveDate(String startDate, String endDate, int days) {
+        SQLiteDatabase db = LitePal.getDatabase();
+        MonthDate monthDate = new MonthDate();
+        monthDate.setStartDate(startDate);
+        monthDate.setEndDate(endDate);
+        monthDate.setDays(days);
+        monthDate.save();
+        AtyUtils.showShort(mActivity, "保存成功", false);
+    }
 
-    @OnClick({R.id.tv_confirm_add, R.id.tv_sun_date, R.id.tv_moon_date, R.id.calendar, R.id.tv_today})
+    private void toOneSelected() {
+        isSave =false;
+        tvMoonDate.setVisibility(View.VISIBLE);
+        llTwoChoose.setVisibility(View.GONE);
+        calendar.notifyCalendar();
+        calendar.toToday();
+        calendarOneSelected();
+        tvConfirmAdd.setText("添加");
+        tvConfirmAdd.setBackgroundResource(R.drawable.shape_solid_theme_50dp);
+    }
+
+
+    @OnClick({R.id.tv_confirm_add, R.id.tv_sun_date, R.id.tv_moon_date, R.id.calendar, R.id.tv_today, R.id.iv_back})
     public void onClicked(View v) {
 //        Toast.makeText(mActivity, "is a click", Toast.LENGTH_SHORT).show();
         switch (v.getId()) {
             case R.id.tv_confirm_add:
                 if(isSave){
-                    isSave =false;
-                    tvMoonDate.setVisibility(View.VISIBLE);
-                    llTwoChoose.setVisibility(View.GONE);
-                    calendarOneSelected();
-                    tvConfirmAdd.setText("添加");
+                    saveDate(startDate, endDate, daysDate);
+                    toOneSelected();
                 }else {
                     isSave = true;
                     tvMoonDate.setVisibility(View.GONE);
                     llTwoChoose.setVisibility(View.VISIBLE);
+                    calendar.notifyCalendar();
+                    calendar.toToday();
                     calendarMoreSelected();
                     tvConfirmAdd.setText("保存");
+                    tvConfirmAdd.setBackgroundResource(R.drawable.shape_solid_green_50dp);
+                    ivBack.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tv_sun_date:
-                //AtyUtils.showShort(mActivity, "添加成功1", false);
+                //AtyUtils.showShort(mActivity, "添加成功", false);
                 break;
             case R.id.tv_moon_date:
                 List<MonthDate> monthDates = LitePal.findAll(MonthDate.class);
@@ -164,6 +227,10 @@ public class FirstFragment extends BaseFragment {
                 break;
             case R.id.tv_today:
                 calendar.toToday();
+                break;
+            case R.id.iv_back:
+                ivBack.setVisibility(View.GONE);
+                toOneSelected();
                 break;
             default:
                 break;

@@ -19,7 +19,7 @@ public class MyDateAdapter extends BaseQuickAdapter<DateList, BaseViewHolder> {
     @Override
     protected void convert(BaseViewHolder helper, DateList item) {
         helper.setText(R.id.tv_start_date, item.startDate);
-        helper.setText(R.id.tv_days, item.days);
+        helper.setText(R.id.tv_days, item.days + "天");
         helper.setText(R.id.tv_end_date, item.endDate);
     }
 
