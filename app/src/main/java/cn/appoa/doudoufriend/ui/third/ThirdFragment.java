@@ -16,13 +16,13 @@ import com.wangzhen.statusbar.DarkStatusBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.adapter.UserMenuListAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.UserMenuList;
 import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
+import cn.appoa.doudoufriend.ui.third.activity.ShowBigImageListActivity;
 
 /**
  * 我的
@@ -69,7 +69,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_user_avatar:
-//                startActivity(new Intent(mActivity, ShowBigImageListActivity.class));
+                startActivity(new Intent(mActivity, ShowBigImageListActivity.class));
                 break;
 
         }

@@ -78,6 +78,9 @@
         <!-- 关于 -->
         <activity
             android:name=".ui.WebViewActivity" />
+        <!-- 查看大图 -->
+        <activity
+            android:name=".ui.third.activity.ShowBigImageListActivity" />
 
     </application>
 
