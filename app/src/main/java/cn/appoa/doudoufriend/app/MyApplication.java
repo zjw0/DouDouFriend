@@ -19,6 +19,7 @@ public class MyApplication extends AfApplication {
 
     @Override
     public void initApplication() {
+        //SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e05d0ca");
         //AtyUtils.isDebug = false;
         // 分包
         MultiDex.install(this);

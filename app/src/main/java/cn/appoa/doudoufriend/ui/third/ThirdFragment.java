@@ -23,6 +23,7 @@ import cn.appoa.doudoufriend.bean.UserMenuList;
 import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
 import cn.appoa.doudoufriend.ui.third.activity.ShowBigImageListActivity;
+import cn.appoa.doudoufriend.ui.third.activity.SpeechSynthesisActivity;
 
 /**
  * 我的
@@ -61,6 +62,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
         menuLists.clear();
         menuLists.add(new UserMenuList(1, R.drawable.menu1, "添加月记", AddDateActivity.class));
         menuLists.add(new UserMenuList(2, R.drawable.menu1, "更多设置", SettingActivity.class));
+        menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音合成", SpeechSynthesisActivity.class));
         menuListAdapter.setNewData(menuLists);
         menuListAdapter.setOnItemClickListener(this);
     }
@@ -87,7 +89,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
             case "更多设置":
                 intent = new Intent(mActivity, item.clazz);
                 break;
-            default:
+            case "语音合成":
                 intent = new Intent(mActivity, item.clazz);
                 break;
         }
