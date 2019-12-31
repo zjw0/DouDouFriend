@@ -23,7 +23,7 @@ import cn.appoa.doudoufriend.bean.UserMenuList;
 import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
 import cn.appoa.doudoufriend.ui.third.activity.ShowBigImageListActivity;
-import cn.appoa.doudoufriend.ui.third.activity.SpeechSynthesisActivity;
+import cn.appoa.doudoufriend.ui.third.speech.SpeechSynthesisActivity;
 
 /**
  * 我的

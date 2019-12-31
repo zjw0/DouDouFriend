@@ -3,6 +3,9 @@ package cn.appoa.doudoufriend.app;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
+
 import org.litepal.LitePal;
 
 import cn.appoa.aframework.app.AfApplication;
@@ -19,7 +22,7 @@ public class MyApplication extends AfApplication {
 
     @Override
     public void initApplication() {
-        //SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e05d0ca");
+        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e05d0ca");
         //AtyUtils.isDebug = false;
         // 分包
         MultiDex.install(this);

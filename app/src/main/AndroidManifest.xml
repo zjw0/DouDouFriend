@@ -73,6 +73,14 @@
             android:name="android.max_aspect"
             android:value="2.1" />
 
+        <!-- 移动统计分析 -->
+<!--        <meta-data-->
+<!--            android:name="IFLYTEK_APPKEY"-->
+<!--            android:value="'5cee406c'" />-->
+<!--        <meta-data-->
+<!--            android:name="IFLYTEK_CHANNEL"-->
+<!--            android:value="Android_Demo" />-->
+
         <!-- provider authorities必须为【包名+.fileprovider】 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -112,7 +120,9 @@
             android:name=".ui.third.activity.ShowBigImageListActivity" />
         <!-- 语音合成 -->
         <activity
-            android:name=".ui.third.activity.SpeechSynthesisActivity"/>
+            android:name=".ui.third.speech.SpeechSynthesisActivity"/>
+        <!-- 语音合成 -->
+        <activity android:name=".ui.third.speech.TtsSettings" />
 
     </application>
 
