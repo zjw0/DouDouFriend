@@ -23,14 +23,18 @@ import com.necer.utils.CalendarUtil;
 import org.joda.time.LocalDate;
 import org.litepal.LitePal;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.appoa.aframework.listener.OnCallbackListener;
 import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.db.MonthDate;
+import cn.appoa.doudoufriend.dialog.DatePickerDialog;
 import cn.appoa.doudoufriend.utils.TimeDifferencesUtils;
 
 
@@ -67,6 +71,8 @@ public class FirstFragment extends BaseFragment {
     private String startDate = "";
     private String endDate = "";
     private int daysDate = 0;
+    private String nowDate = "2020-01-01";
+    private DatePickerDialog dialogDate;
 
     @Override
     public View initFragment(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -87,9 +93,66 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        //bgCalendarColor();
-        //calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorPointRed));
-        calendar.setBackgroundResource(R.drawable.icon_animal);
+//        calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorPointRed));
+//        calendar.setBackgroundResource(R.drawable.icon_animal);
+
+        //获取手机系统当前时间
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
+        Date date = new Date(System.currentTimeMillis());
+        nowDate =simpleDateFormat.format(date);
+
+        //选择时间
+        dialogDate = new DatePickerDialog(mActivity, new OnCallbackListener() {
+            @Override
+            public void onCallback(int type, Object... obj) {
+                String jumpDate = (String) obj[0];
+                calendar.jumpDate(jumpDate);
+            }
+        }, 1);
+    }
+
+    private void setAnimals(String animals) {
+        switch (animals) {
+            case "鼠":
+                calendar.setBackgroundResource(R.drawable.icon_shu);
+                break;
+            case "牛":
+                calendar.setBackgroundResource(R.drawable.icon_niu);
+                break;
+            case "虎":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "兔":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "龙":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "蛇":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "马":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "羊":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "猴":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "鸡":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "狗":
+                calendar.setBackgroundResource(R.drawable.icon_animal);
+                break;
+            case "猪":
+                calendar.setBackgroundResource(R.drawable.icon_zhu);
+                break;
+            default:
+                calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorWhite));
+                break;
+        }
     }
 
     private void calendarOneSelected() {
@@ -104,11 +167,15 @@ public class FirstFragment extends BaseFragment {
                 tvEndDate.setText(null);
                 tvDays.setText(null);
                 AtyUtils.i("当前页面选中", "是" + localDate);
+                setAnimals(calendarDate.lunar.animals);
+                AtyUtils.i("当前页面选中", "生肖是" + calendarDate.lunar.animals);
+
             }
         });
     }
 
     private void calendarMoreSelected() {
+        calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorWhite));
         calendar.setSelectedMode(SelectedModel.MULTIPLE);
         calendar.setMultipleNum(2, MultipleNumModel.FULL_REMOVE_FIRST);
         calendar.setOnCalendarMultipleChangedListener(new OnCalendarMultipleChangedListener() {
@@ -120,51 +187,51 @@ public class FirstFragment extends BaseFragment {
                 tvSunDate.setText(year + "年" + month + "月");
 //                CalendarDate calendarDate = CalendarUtil.getCalendarDate(currectSelectList.get(0));
 //                tvMoonDate.setText(calendarDate.lunar.lunarYearStr + calendarDate.lunar.lunarMonthStr + calendarDate.lunar.lunarDayStr);
-                if(currectSelectList.size()<= 0){
+                if (currectSelectList.size() <= 0) {
                     tvStartDate.setText("开始时间：");
                     tvEndDate.setText("结束时间：");
                     tvDays.setText("");
                     isBack = 0;
                 }
-                if(currectSelectList.size()==1){
+                if (currectSelectList.size() == 1) {
                     startDay = String.valueOf(currectSelectList.get(0));
                     tvStartDate.setText("开始时间：" + startDay);
                     tvEndDate.setText("结束时间：");
                     tvDays.setText("");
                     isBack = 1;
                 }
-                if(currectSelectList.size()>=2){
+                if (currectSelectList.size() >= 2) {
                     startDay = String.valueOf(currectSelectList.get(0));
                     endDay = String.valueOf(currectSelectList.get(1));
                     int days = TimeDifferencesUtils.getTimeDifferences(startDay + " 00:00:00",
                             endDay + " 00:00:00");
-                    if(days <= 0){
+                    if (days <= 0) {
 //                        AtyUtils.showShort(mActivity, "结束日期必须大于开始日期", false);
                         tvStartDate.setText("开始时间：" + endDay);
                         tvEndDate.setText("结束时间：" + startDay);
-                        tvDays.setText(Math.abs(days)+1 + "天");
+                        tvDays.setText(Math.abs(days) + 1 + "天");
                         isBack = 2;
-                    }else {
+                    } else {
                         tvStartDate.setText("开始时间：" + startDay);
                         tvEndDate.setText("结束时间：" + endDay);
-                        tvDays.setText(days+1 + "天");
+                        tvDays.setText(days + 1 + "天");
                         isBack = 2;
                     }
                     startDate = startDay;
                     endDate = endDay;
-                    daysDate = Math.abs(days)+1;
+                    daysDate = Math.abs(days) + 1;
                 }
                 switch (isBack) {
                     case -1:
-                        AtyUtils.showShort(mActivity,"请选择开始和结束时间",false);
+                        AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
                         isSave = false;
                         break;
                     case 0:
-                        AtyUtils.showShort(mActivity,"请选择开始和结束时间",false);
+                        AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
                         isSave = false;
                         break;
                     case 1:
-                        AtyUtils.showShort(mActivity,"请选择结束时间",false);
+                        AtyUtils.showShort(mActivity, "请选择结束时间", false);
                         isSave = false;
                         break;
                     case 2:
@@ -188,7 +255,7 @@ public class FirstFragment extends BaseFragment {
     }
 
     private void toOneSelected() {
-        isSave =false;
+        isSave = false;
         tvMoonDate.setVisibility(View.VISIBLE);
         llTwoChoose.setVisibility(View.GONE);
         ivBack.setVisibility(View.GONE);
@@ -205,10 +272,10 @@ public class FirstFragment extends BaseFragment {
 //        Toast.makeText(mActivity, "is a click", Toast.LENGTH_SHORT).show();
         switch (v.getId()) {
             case R.id.tv_confirm_add:
-                if(isSave){
+                if (isSave) {
                     saveDate(startDate, endDate, daysDate);
                     toOneSelected();
-                }else {
+                } else {
                     isSave = true;
                     tvMoonDate.setVisibility(View.GONE);
                     llTwoChoose.setVisibility(View.VISIBLE);
@@ -221,12 +288,13 @@ public class FirstFragment extends BaseFragment {
                 }
                 break;
             case R.id.tv_sun_date:
-                //AtyUtils.showShort(mActivity, "添加成功", false);
+                dialogDate.initData("1901-01-01", "2099-01-01");
+                dialogDate.showDatePickerDialog("跳转日期", nowDate);
                 break;
             case R.id.tv_moon_date:
                 List<MonthDate> monthDates = LitePal.findAll(MonthDate.class);
-                if(monthDates.size() > 0){
-                    tvMoonDate.setText( "结束日期：" + monthDates.get(monthDates.size()-1).getEndDate());
+                if (monthDates.size() > 0) {
+                    tvMoonDate.setText("结束日期：" + monthDates.get(monthDates.size() - 1).getEndDate());
 //                    for (int i = 0; i < monthDates.size(); i++) {
 //                        tvMoonDate.setText( "结束日期：" + monthDates.get(i).getEndDate());
 //                    }

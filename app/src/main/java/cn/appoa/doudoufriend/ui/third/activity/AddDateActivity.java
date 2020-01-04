@@ -101,9 +101,6 @@ public class AddDateActivity extends BaseActivity
 
     private void getMobSystemTime(String startDate) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
-//        Date date = new Date(System.currentTimeMillis());
-//        nowDate = simpleDateFormat.format(date);
-//        afterDate = simpleDateFormat.format(AtyUtils.getDateAfter(date,1));
         Date date = DateUtils.getTimetoDate(startDate);
         afterDate = simpleDateFormat.format(AtyUtils.getDateAfter(date,1));
     }
