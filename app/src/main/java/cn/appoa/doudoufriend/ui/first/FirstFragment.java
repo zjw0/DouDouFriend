@@ -120,31 +120,31 @@ public class FirstFragment extends BaseFragment {
                 calendar.setBackgroundResource(R.drawable.icon_niu);
                 break;
             case "虎":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_hu);
                 break;
             case "兔":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_tu);
                 break;
             case "龙":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_long);
                 break;
             case "蛇":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_she);
                 break;
             case "马":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_ma);
                 break;
             case "羊":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_yang);
                 break;
             case "猴":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_hou);
                 break;
             case "鸡":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_ji);
                 break;
             case "狗":
-                calendar.setBackgroundResource(R.drawable.icon_animal);
+                calendar.setBackgroundResource(R.drawable.icon_gou);
                 break;
             case "猪":
                 calendar.setBackgroundResource(R.drawable.icon_zhu);
