@@ -8,11 +8,13 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import cn.appoa.doudoufriend.base.BaseActivity;
+import cn.appoa.doudoufriend.even.DateEvent;
 import cn.appoa.doudoufriend.presenter.MainPresenter;
 import cn.appoa.doudoufriend.ui.first.FirstFragment;
 import cn.appoa.doudoufriend.ui.second.SecondFragment;
 import cn.appoa.doudoufriend.ui.third.ThirdFragment;
 import cn.appoa.doudoufriend.view.MainView;
+import zm.bus.event.BusProvider;
 
 public class MainActivity extends BaseActivity<MainPresenter>
         implements MainView, CompoundButton.OnCheckedChangeListener {
@@ -99,6 +101,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
                     fragment2 = new SecondFragment();
                     beginTransaction.add(R.id.fl_main_fragment, fragment2);
                 } else {
+                    BusProvider.getInstance().post(new DateEvent(1));
                     beginTransaction.show(fragment2);
                     fragment2.notifyData();
                 }

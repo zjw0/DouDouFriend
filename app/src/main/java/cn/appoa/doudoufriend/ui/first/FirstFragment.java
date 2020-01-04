@@ -3,6 +3,7 @@ package cn.appoa.doudoufriend.ui.first;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +87,9 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
+        //bgCalendarColor();
+        //calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorPointRed));
+        calendar.setBackgroundResource(R.drawable.icon_animal);
     }
 
     private void calendarOneSelected() {

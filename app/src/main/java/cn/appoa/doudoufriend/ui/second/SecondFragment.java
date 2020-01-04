@@ -18,6 +18,7 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.squareup.otto.Subscribe;
 
 import org.litepal.LitePal;
 
@@ -35,6 +36,7 @@ import cn.appoa.doudoufriend.adapter.MyDateAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.DateList;
 import cn.appoa.doudoufriend.db.MonthDate;
+import cn.appoa.doudoufriend.even.DateEvent;
 import zm.http.volley.ZmVolley;
 import zm.http.volley.request.ZmStringRequest;
 
@@ -156,6 +158,14 @@ public class SecondFragment extends BaseFragment {
                 }), REQUEST_TAG);
     }
 
-
+    @Subscribe
+    public void setDateEvent(DateEvent event) {
+        switch (event.type) {
+            case 1:
+                dataList.clear();
+                initData();
+                break;
+        }
+    }
 
 }

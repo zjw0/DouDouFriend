@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTheme"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -23,18 +23,16 @@
         android:paddingLeft="@dimen/padding_big"
         android:paddingRight="@dimen/padding_big"
         android:text="我的月记"
-        android:textSize="@dimen/text_large"
-        android:textColor="@color/colorWhite" />
-
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_large" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
         android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/padding_big"
-        android:paddingRight="@dimen/padding_big"
-        android:background="@color/colorBgLighterGray"
-        android:orientation="horizontal">
+        android:paddingRight="@dimen/padding_big">
 
         <TextView
             style="@style/SimpleTextView"
@@ -59,6 +57,11 @@
 
     </LinearLayout>
 
+    <View
+        style="@style/HorizontalLine"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"/>
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
@@ -68,9 +71,9 @@
             android:id="@+id/rv_second_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             android:paddingLeft="@dimen/padding_big"
-            android:paddingRight="@dimen/padding_big"
-            android:overScrollMode="never" />
+            android:paddingRight="@dimen/padding_big" />
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>
