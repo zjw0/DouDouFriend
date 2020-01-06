@@ -94,7 +94,7 @@ public class FirstFragment extends BaseFragment {
     @Override
     public void initData() {
 //        calendar.setBackgroundColor(ContextCompat.getColor(mActivity, R.color.colorPointRed));
-//        calendar.setBackgroundResource(R.drawable.icon_animal);
+//        calendar.setBackgroundResource(R.drawable.icon_old_animal);
 
         //获取手机系统当前时间
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// HH:mm:ss
@@ -222,10 +222,11 @@ public class FirstFragment extends BaseFragment {
                     daysDate = Math.abs(days) + 1;
                 }
                 switch (isBack) {
+//                    case -1:
+//                        AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
+//                        isSave = false;
+//                        break;
                     case -1:
-                        AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
-                        isSave = false;
-                        break;
                     case 0:
                         AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
                         isSave = false;

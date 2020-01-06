@@ -12,33 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBgLighterGray"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
         android:layout_marginTop="@dimen/padding_big"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/padding_big"
-        android:paddingRight="@dimen/padding_big"
-        android:orientation="horizontal">
+        android:paddingRight="@dimen/padding_big">
 
         <ImageView
-            android:visibility="gone"
             android:id="@+id/iv_back"
             style="@style/SimpleImageView"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingRight="@dimen/padding_big"
+            android:layout_centerVertical="true"
             android:paddingTop="@dimen/padding_normal"
+            android:paddingRight="@dimen/padding_big"
             android:paddingBottom="@dimen/padding_normal"
-            android:src="@drawable/back_black"/>
+            android:src="@drawable/back_black"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_sun_date"
             style="@style/SimpleTextView"
-            android:layout_toRightOf="@id/iv_back"
             android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv_back"
             android:text="2019年12月"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_large" />
@@ -47,8 +47,8 @@
             android:id="@+id/tv_moon_date"
             style="@style/SimpleTextView"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/tv_sun_date"
             android:layout_marginLeft="@dimen/padding_huge"
+            android:layout_toRightOf="@id/tv_sun_date"
             android:text="农历十二月二十四"
             android:textColor="@color/colorText"
             android:textSize="@dimen/text_normal" />
@@ -56,68 +56,74 @@
         <TextView
             android:id="@+id/tv_today"
             style="@style/SimpleTextView"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/padding_small"
-            android:text="今天"
             android:background="@drawable/point_theme"
+            android:text="今天"
             android:textColor="@color/colorText"
             android:textSize="@dimen/text_normal" />
 
     </RelativeLayout>
 
-
-    <com.necer.view.WeekBar
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
-        android:paddingTop="@dimen/padding_big"
-        android:layout_marginTop="@dimen/padding_big"/>
+        android:orientation="vertical">
 
-    <com.necer.calendar.MonthCalendar
-        android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/month_calendar_height"
-        app:hollowCircleColor="@color/hollowCircleColor"
-        app:selectCircleColor="@color/selectCircleColor"
-        app:todaySolarTextColor="@color/todaySolarTextColor" />
+        <com.necer.view.WeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_big"
+            android:paddingTop="@dimen/padding_big" />
+
+        <com.necer.calendar.MonthCalendar
+            android:id="@+id/calendar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/month_calendar_height"
+            app:hollowCircleColor="@color/hollowCircleColor"
+            app:selectCircleColor="@color/selectCircleColor"
+            app:todaySolarTextColor="@color/todaySolarTextColor" />
+
+    </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_two_choose"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
         android:layout_marginTop="@dimen/padding_big"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         android:paddingLeft="@dimen/padding_big"
         android:paddingRight="@dimen/padding_big"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_start_date"
             style="@style/SimpleTextView"
             android:layout_weight="2"
             android:gravity="left"
-            tools:text="开始时间：2019-12-24"
             android:textColor="@color/colorText"
-            android:textSize="@dimen/text_normal" />
+            android:textSize="@dimen/text_normal"
+            tools:text="开始时间：2019-12-24" />
 
         <TextView
             android:id="@+id/tv_end_date"
             style="@style/SimpleTextView"
-            android:gravity="left"
             android:layout_weight="2"
-            tools:text="结束时间：2019-12-26"
+            android:gravity="left"
             android:textColor="@color/colorText"
-            android:textSize="@dimen/text_normal" />
+            android:textSize="@dimen/text_normal"
+            tools:text="结束时间：2019-12-26" />
 
         <TextView
             android:id="@+id/tv_days"
             style="@style/SimpleTextView"
             android:layout_weight="1"
-            tools:text="3天"
             android:textColor="@color/colorText"
-            android:textSize="@dimen/text_normal" />
+            android:textSize="@dimen/text_normal"
+            tools:text="3天" />
 
 
     </LinearLayout>
@@ -128,8 +134,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_normal"
         android:layout_marginLeft="@dimen/padding_big"
-        android:layout_marginRight="@dimen/padding_big"
         android:layout_marginTop="@dimen/padding_huge"
+        android:layout_marginRight="@dimen/padding_big"
         android:background="@drawable/shape_solid_theme_50dp"
         android:text="添加"
         android:textColor="@color/colorWhite"
