@@ -226,7 +226,6 @@ public class FirstFragment extends BaseFragment {
 //                        AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
 //                        isSave = false;
 //                        break;
-                    case -1:
                     case 0:
                         AtyUtils.showShort(mActivity, "请选择开始和结束时间", false);
                         isSave = false;
