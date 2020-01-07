@@ -19,17 +19,67 @@
         android:padding="@dimen/padding_big"
         android:singleLine="false" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"
+        android:layout_marginTop="@dimen/padding_huge"
+        android:gravity="center_vertical">
+
     <TextView
         android:id="@+id/tv_ok"
         style="@style/SimpleTextView"
         android:layout_width="@dimen/height_huge"
         android:layout_height="@dimen/height_normal"
         android:background="@drawable/shape_solid_theme_50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/padding_huge"
-        android:text="合成语音播放"
+        android:text="开始合成"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_big" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        style="@style/SimpleTextView"
+        android:layout_width="@dimen/height_huge"
+        android:layout_height="@dimen/height_normal"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_solid_theme_50dp"
+        android:text="取消合成"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_big" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_big"
+        android:layout_marginRight="@dimen/padding_big"
+        android:layout_marginTop="@dimen/padding_huge"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_pause"
+            style="@style/SimpleTextView"
+            android:layout_width="@dimen/height_huge"
+            android:layout_height="@dimen/height_normal"
+            android:background="@drawable/shape_solid_theme_50dp"
+            android:text="暂停播放"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_big" />
+
+        <TextView
+            android:id="@+id/tv_resume"
+            style="@style/SimpleTextView"
+            android:layout_width="@dimen/height_huge"
+            android:layout_height="@dimen/height_normal"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_solid_theme_50dp"
+            android:text="继续播放"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_big" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

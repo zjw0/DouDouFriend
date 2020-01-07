@@ -16,7 +16,8 @@ import cn.appoa.doudoufriend.ui.third.speech.util.SettingTextWatcher;
  */
 public class TtsSettings extends PreferenceActivity implements OnPreferenceChangeListener {
 	
-	public static final String PREFER_NAME = "com.iflytek.setting";
+//	public static final String PREFER_NAME = "com.iflytek.setting";
+	public static final String PREFER_NAME = "cn.appoa.doudoufriend.ui.third.speech";
 	private EditTextPreference mSpeedPreference;
 	private EditTextPreference mPitchPreference;
 	private EditTextPreference mVolumePreference;

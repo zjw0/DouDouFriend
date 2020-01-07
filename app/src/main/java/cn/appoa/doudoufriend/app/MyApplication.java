@@ -10,7 +10,6 @@ import org.litepal.LitePal;
 
 import cn.appoa.aframework.app.AfApplication;
 import cn.appoa.aframework.utils.AESUtils;
-import cn.appoa.aframework.utils.AtyUtils;
 
 
 public class MyApplication extends AfApplication {
@@ -22,7 +21,6 @@ public class MyApplication extends AfApplication {
 
     @Override
     public void initApplication() {
-        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e05d0ca");
         //AtyUtils.isDebug = false;
         // 分包
         MultiDex.install(this);
@@ -34,6 +32,7 @@ public class MyApplication extends AfApplication {
         //ShareSdkUtils.initShare(this);
         //初始化LitePal
         LitePal.initialize(this);
+        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=5e05d0ca");
     }
 
     @Override

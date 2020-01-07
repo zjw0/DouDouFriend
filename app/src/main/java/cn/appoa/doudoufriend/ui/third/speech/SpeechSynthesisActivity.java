@@ -44,6 +44,13 @@ public class SpeechSynthesisActivity extends BaseActivity {
     EditText etIntro;
     @BindView(R.id.tv_ok)
     TextView tvOk;
+    @BindView(R.id.tv_cancel)
+    TextView tvCancel;
+    @BindView(R.id.tv_pause)
+    TextView tvPause;
+    @BindView(R.id.tv_resume)
+    TextView tvResume;
+
     // 默认发音人
     private String voicer = "xiaoyan";
     // 语音合成对象
@@ -58,9 +65,9 @@ public class SpeechSynthesisActivity extends BaseActivity {
     private String mEngineType = SpeechConstant.TYPE_CLOUD;
 
     MemoryFile memFile;
-    public volatile long   mTotalSize = 0;
+    public volatile long mTotalSize = 0;
 
-    private Vector<byte[]> container = new Vector<> ();
+    private Vector<byte[]> container = new Vector<>();
 
     @Override
     public BaseTitlebar initTitlebar() {
@@ -79,6 +86,7 @@ public class SpeechSynthesisActivity extends BaseActivity {
     @Override
     public void initView() {
         super.initView();
+        etIntro.setText(R.string.text_tts_source);
     }
 
     @Override
@@ -99,7 +107,7 @@ public class SpeechSynthesisActivity extends BaseActivity {
         public void onInit(int code) {
             Log.d(TAG, "InitListener init() code = " + code);
             if (code != ErrorCode.SUCCESS) {
-                showTip("初始化失败,错误码："+code+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
+                showTip("初始化失败,错误码：" + code + ",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
             } else {
                 // 初始化成功，之后可以调用startSpeaking方法
                 // 注：有的开发者在onCreate方法中创建完合成对象之后马上就调用startSpeaking进行合成，
@@ -146,9 +154,9 @@ public class SpeechSynthesisActivity extends BaseActivity {
             showTip(String.format(getString(R.string.tts_toast_format),
                     mPercentForBuffering, mPercentForPlaying));
 
-            SpannableStringBuilder style=new SpannableStringBuilder(texts);
-            Log.e(TAG,"beginPos = "+beginPos +"  endPos = "+endPos);
-            style.setSpan(new BackgroundColorSpan(Color.RED),beginPos,endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            SpannableStringBuilder style = new SpannableStringBuilder(texts);
+            Log.e(TAG, "beginPos = " + beginPos + "  endPos = " + endPos);
+            style.setSpan(new BackgroundColorSpan(Color.RED), beginPos, endPos, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             ((EditText) findViewById(R.id.et_intro)).setText(style);
         }
 
@@ -157,15 +165,15 @@ public class SpeechSynthesisActivity extends BaseActivity {
             System.out.println("oncompleted");
             if (error == null) {
                 //	showTip("播放完成");
-                DebugLog.LogD("播放完成,"+container.size());
+                DebugLog.LogD("播放完成," + container.size());
                 try {
-                    for(int i=0;i<container.size();i++) {
+                    for (int i = 0; i < container.size(); i++) {
                         writeToFile(container.get(i));
                     }
-                }catch (IOException e) {
+                } catch (IOException e) {
 
                 }
-                FileUtil.saveFile(memFile,mTotalSize,Environment.getExternalStorageDirectory()+"/1.pcm");
+                FileUtil.saveFile(memFile, mTotalSize, Environment.getExternalStorageDirectory() + "/1.pcm");
 
 
             } else if (error != null) {
@@ -194,18 +202,20 @@ public class SpeechSynthesisActivity extends BaseActivity {
     };
 
     private void showTip(final String str) {
-        Toast.makeText(this,str,Toast.LENGTH_SHORT);
+        Toast.makeText(this, str, Toast.LENGTH_SHORT);
+//        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 参数设置
+     *
      * @return
      */
-    private void setParam(){
+    private void setParam() {
         // 清空参数
         mTts.setParameter(SpeechConstant.PARAMS, null);
         // 根据合成引擎设置相应参数
-        if(mEngineType.equals(SpeechConstant.TYPE_CLOUD)) {
+        if (mEngineType.equals(SpeechConstant.TYPE_CLOUD)) {
             mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
             //支持实时音频返回，仅在synthesizeToUri条件下支持
             mTts.setParameter(SpeechConstant.TTS_DATA_NOTIFY, "1");
@@ -219,7 +229,7 @@ public class SpeechSynthesisActivity extends BaseActivity {
             mTts.setParameter(SpeechConstant.PITCH, mSharedPreferences.getString("pitch_preference", "50"));
             //设置合成音量
             mTts.setParameter(SpeechConstant.VOLUME, mSharedPreferences.getString("volume_preference", "50"));
-        }else {
+        } else {
             mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
             mTts.setParameter(SpeechConstant.VOICE_NAME, "");
 
@@ -232,38 +242,37 @@ public class SpeechSynthesisActivity extends BaseActivity {
 
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "pcm");
-        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/tts.pcm");
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/tts.pcm");
     }
 
     private void writeToFile(byte[] data) throws IOException {
         if (data == null || data.length == 0)
             return;
         try {
-            if(memFile == null)
-            {
-                Log.e("MscSpeechLog_","ffffffffff");
-                String mFilepath = Environment.getExternalStorageDirectory()+"/1.pcm";
-                memFile = new MemoryFile(mFilepath,1920000);
+            if (memFile == null) {
+                Log.e("MscSpeechLog_", "ffffffffff");
+                String mFilepath = Environment.getExternalStorageDirectory() + "/1.pcm";
+                memFile = new MemoryFile(mFilepath, 1920000);
                 memFile.allowPurging(false);
             }
-            memFile.writeBytes(data, 0, (int)mTotalSize, data.length);
+            memFile.writeBytes(data, 0, (int) mTotalSize, data.length);
             mTotalSize += data.length;
         } finally {
         }
     }
 
-    @OnClick({R.id.et_intro, R.id.tv_ok})
+    @OnClick({R.id.et_intro, R.id.tv_ok, R.id.tv_cancel, R.id.tv_pause, R.id.tv_resume})
     public void onClicked(View v) {
-        if( null == mTts ){
-            AtyUtils.showShort(mActivity,"创建对象失败",false);
+        if (null == mTts) {
+            AtyUtils.showShort(mActivity, "创建对象失败", false);
             // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
-            this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
+            this.showTip("创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化");
             return;
         }
         switch (v.getId()) {
             case R.id.tv_ok:
-                if(TextUtils.isEmpty(AtyUtils.getText(etIntro))){
-                    AtyUtils.showShort(mActivity,"请输入合成内容！",false);
+                if (TextUtils.isEmpty(AtyUtils.getText(etIntro))) {
+                    AtyUtils.showShort(mActivity, "请输入合成内容！", false);
                     return;
                 }
                 // 移动数据分析，收集开始合成事件
@@ -278,14 +287,27 @@ public class SpeechSynthesisActivity extends BaseActivity {
 //			 * 只保存音频不进行播放接口,调用此接口请注释startSpeaking接口
 //			 * text:要合成的文本，uri:需要保存的音频全路径，listener:回调接口
 //			*/
-                String path = Environment.getExternalStorageDirectory()+"/tts.pcm";
+                String path = Environment.getExternalStorageDirectory() + "/tts.pcm";
                 //	int code = mTts.synthesizeToUri(texts, path, mTtsListener);
 
                 if (code != ErrorCode.SUCCESS) {
-                    showTip("语音合成失败,错误码: " + code+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
+                    showTip("语音合成失败,错误码: " + code + ",请点击网址https://www.xfyun.cn/document/error-code查询解决方案");
 //                    AtyUtils.showShort(mActivity,"语音合成失败,错误码: " + code+",请点击网址https://www.xfyun.cn/document/error-code查询解决方案",false);
+                } else {
+                    AtyUtils.showShort(mActivity, "合成成功", false);
                 }
-                AtyUtils.showShort(mActivity, "合成成功", false);
+                break;
+            // 取消合成
+            case R.id.tv_cancel:
+                mTts.stopSpeaking();
+                break;
+            // 暂停播放
+            case R.id.tv_pause:
+                mTts.pauseSpeaking();
+                break;
+            // 继续播放
+            case R.id.tv_resume:
+                mTts.resumeSpeaking();
                 break;
         }
     }
@@ -297,6 +319,7 @@ public class SpeechSynthesisActivity extends BaseActivity {
 		FlowerCollector.onPageStart(TAG);*/
         super.onResume();
     }
+
     @Override
     protected void onPause() {
         //移动数据统计分析
@@ -304,11 +327,12 @@ public class SpeechSynthesisActivity extends BaseActivity {
 		FlowerCollector.onPause(TtsDemo.this);*/
         super.onPause();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        if( null != mTts ){
+        if (null != mTts) {
             mTts.stopSpeaking();
             // 退出时释放连接
             mTts.destroy();
