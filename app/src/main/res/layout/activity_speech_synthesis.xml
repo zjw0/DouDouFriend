@@ -19,6 +19,41 @@
         android:padding="@dimen/padding_big"
         android:singleLine="false" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_normal"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/padding_huge"
+        android:layout_marginLeft="@dimen/padding_huge"
+        android:layout_marginRight="@dimen/padding_huge"
+        android:gravity="center_vertical">
+
+    <RadioGroup
+        android:id="@+id/tts_redio_group"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/tts_radio_cloud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="在线合成" />
+
+        <RadioButton
+            android:id="@+id/tts_radio_local"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="增强版本地合成" />
+    </RadioGroup>
+
+    </LinearLayout>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

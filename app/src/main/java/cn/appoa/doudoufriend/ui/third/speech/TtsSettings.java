@@ -5,7 +5,9 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
+import android.view.View;
 import android.view.Window;
+import android.widget.ListView;
 
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.ui.third.speech.util.SettingTextWatcher;
@@ -21,12 +23,18 @@ public class TtsSettings extends PreferenceActivity implements OnPreferenceChang
 	private EditTextPreference mSpeedPreference;
 	private EditTextPreference mPitchPreference;
 	private EditTextPreference mVolumePreference;
-	
+	private ListView listView;
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		//使用布局文件设置与顶部间距
+		setContentView(R.layout.activity_settings_preference_title);
+		//添加ListView底部分割线
+		listView = (ListView) findViewById(android.R.id.list);
+		listView.addFooterView(new View(this));
 		// 指定保存文件名字
 		getPreferenceManager().setSharedPreferencesName(PREFER_NAME);
 		addPreferencesFromResource(R.xml.tts_setting);

@@ -1,5 +1,6 @@
 package cn.appoa.doudoufriend.ui.third.speech;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,12 +12,16 @@ import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
+import com.iflytek.cloud.util.ResourceUtil.RESOURCE_TYPE;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechEvent;
@@ -24,6 +29,7 @@ import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
 import com.iflytek.cloud.msc.util.FileUtil;
 import com.iflytek.cloud.msc.util.log.DebugLog;
+import com.iflytek.cloud.util.ResourceUtil;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -36,7 +42,7 @@ import cn.appoa.aframework.utils.AtyUtils;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.base.BaseActivity;
 
-public class SpeechSynthesisActivity extends BaseActivity {
+public class SpeechSynthesisActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
     private static String TAG = SpeechSynthesisActivity.class.getSimpleName();
 
@@ -50,9 +56,19 @@ public class SpeechSynthesisActivity extends BaseActivity {
     TextView tvPause;
     @BindView(R.id.tv_resume)
     TextView tvResume;
+    @BindView(R.id.tts_radio_cloud)
+    RadioButton ttsRadioCloud;
+    @BindView(R.id.tts_radio_local)
+    RadioButton ttsRadioLocal;
+    @BindView(R.id.tts_redio_group)
+    RadioGroup ttsRedioGroup;
 
     // 默认发音人
     private String voicer = "xiaoyan";
+    // 默认本地发音人
+    public static String voicerLocal = "xiaoyan";
+
+    public static String voicerXtts = "xiaoyan";
     // 语音合成对象
     private SpeechSynthesizer mTts;
     String texts = "";
@@ -62,7 +78,8 @@ public class SpeechSynthesisActivity extends BaseActivity {
     // 播放进度
     private int mPercentForPlaying = 0;
     // 引擎类型
-    private String mEngineType = SpeechConstant.TYPE_CLOUD;
+//    private String mEngineType = SpeechConstant.TYPE_CLOUD;
+    private String mEngineType = SpeechConstant.TYPE_XTTS;
 
     MemoryFile memFile;
     public volatile long mTotalSize = 0;
@@ -74,6 +91,14 @@ public class SpeechSynthesisActivity extends BaseActivity {
         return new DefaultTitlebar.Builder(this)
                 .setBackImage(R.drawable.back_white)
                 .setTitle("语音合成")
+                .setMenuImage(R.drawable.icon_setting)
+                .setMenuListener(new BaseTitlebar.OnClickMenuListener() {
+                    @Override
+                    public void onClickMenu(View view) {
+                        Intent intent = new Intent(mActivity, TtsSettings.class);
+                        startActivity(intent);
+                    }
+                })
                 .create();
     }
 
@@ -87,12 +112,15 @@ public class SpeechSynthesisActivity extends BaseActivity {
     public void initView() {
         super.initView();
         etIntro.setText(R.string.text_tts_source);
+        ttsRadioCloud.setOnCheckedChangeListener(this);
+        ttsRadioLocal.setOnCheckedChangeListener(this);
     }
 
     @Override
     public void initData() {
         DebugLog.setShowLog(true);
-        mEngineType = SpeechConstant.TYPE_CLOUD;
+//        mEngineType = SpeechConstant.TYPE_CLOUD;
+        mEngineType = SpeechConstant.TYPE_XTTS;
         // 初始化合成对象
         mTts = SpeechSynthesizer.createSynthesizer(SpeechSynthesisActivity.this, mTtsInitListener);
         mSharedPreferences = getSharedPreferences(TtsSettings.PREFER_NAME, MODE_PRIVATE);
@@ -173,7 +201,8 @@ public class SpeechSynthesisActivity extends BaseActivity {
                 } catch (IOException e) {
 
                 }
-                FileUtil.saveFile(memFile, mTotalSize, Environment.getExternalStorageDirectory() + "/1.pcm");
+//                FileUtil.saveFile(memFile, mTotalSize, Environment.getExternalStorageDirectory() + "/1.pcm");
+                FileUtil.saveFile(memFile, mTotalSize, Environment.getExternalStorageDirectory() + "/1.wav");
 
 
             } else if (error != null) {
@@ -230,19 +259,33 @@ public class SpeechSynthesisActivity extends BaseActivity {
             //设置合成音量
             mTts.setParameter(SpeechConstant.VOLUME, mSharedPreferences.getString("volume_preference", "50"));
         } else {
-            mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
-            mTts.setParameter(SpeechConstant.VOICE_NAME, "");
+            mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_XTTS);
+            //设置发音人资源路径
+            mTts.setParameter(ResourceUtil.TTS_RES_PATH, getResourcePath());
+            //设置发音人
+            mTts.setParameter(SpeechConstant.VOICE_NAME, voicerXtts);
 
         }
 
+        //mTts.setParameter(SpeechConstant.TTS_DATA_NOTIFY,"1");//支持实时音频流抛出，仅在synthesizeToUri条件下支持
+        //设置合成语速
+        mTts.setParameter(SpeechConstant.SPEED, mSharedPreferences.getString("speed_preference", "50"));
+        //设置合成音调
+        mTts.setParameter(SpeechConstant.PITCH, mSharedPreferences.getString("pitch_preference", "50"));
+        //设置合成音量
+        mTts.setParameter(SpeechConstant.VOLUME, mSharedPreferences.getString("volume_preference", "50"));
         //设置播放器音频流类型
         mTts.setParameter(SpeechConstant.STREAM_TYPE, mSharedPreferences.getString("stream_preference", "3"));
+        //	mTts.setParameter(SpeechConstant.STREAM_TYPE, AudioManager.STREAM_MUSIC+"");
+
         // 设置播放合成音频打断音乐播放，默认为true
-        mTts.setParameter(SpeechConstant.KEY_REQUEST_FOCUS, "false");
+        mTts.setParameter(SpeechConstant.KEY_REQUEST_FOCUS, "true");
 
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
-        mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "pcm");
-        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/tts.pcm");
+        mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
+
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/tts.wav");
+
     }
 
     private void writeToFile(byte[] data) throws IOException {
@@ -251,13 +294,51 @@ public class SpeechSynthesisActivity extends BaseActivity {
         try {
             if (memFile == null) {
                 Log.e("MscSpeechLog_", "ffffffffff");
-                String mFilepath = Environment.getExternalStorageDirectory() + "/1.pcm";
+//                String mFilepath = Environment.getExternalStorageDirectory() + "/1.pcm";
+                String mFilepath = Environment.getExternalStorageDirectory() + "/1.wav";
                 memFile = new MemoryFile(mFilepath, 1920000);
                 memFile.allowPurging(false);
             }
             memFile.writeBytes(data, 0, (int) mTotalSize, data.length);
             mTotalSize += data.length;
         } finally {
+        }
+    }
+
+    //获取发音人资源路径
+    private String getResourcePath() {
+        StringBuffer tempBuffer = new StringBuffer();
+        String type = "tts";
+        if (mEngineType.equals(SpeechConstant.TYPE_XTTS)) {
+            type = "xtts";
+        }
+        //合成通用资源
+        tempBuffer.append(ResourceUtil.generateResourcePath(this, RESOURCE_TYPE.assets, type + "/common.jet"));
+        tempBuffer.append(";");
+        //发音人资源
+        if (mEngineType.equals(SpeechConstant.TYPE_XTTS)) {
+            tempBuffer.append(ResourceUtil.generateResourcePath(this, RESOURCE_TYPE.assets, type + "/" + SpeechSynthesisActivity.voicerXtts + ".jet"));
+        } else {
+            tempBuffer.append(ResourceUtil.generateResourcePath(this, RESOURCE_TYPE.assets, type + "/" + SpeechSynthesisActivity.voicerLocal + ".jet"));
+        }
+
+        return tempBuffer.toString();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (!isChecked) {
+            return;
+        }
+        switch (buttonView.getId()) {
+            case R.id.tts_radio_cloud:
+                mEngineType = SpeechConstant.TYPE_CLOUD;
+                AtyUtils.showShort(mActivity, "在线合成", false);
+                break;
+            case R.id.tts_radio_local:
+                mEngineType = SpeechConstant.TYPE_XTTS;
+                AtyUtils.showShort(mActivity, "本地合成", false);
+                break;
         }
     }
 
@@ -287,7 +368,7 @@ public class SpeechSynthesisActivity extends BaseActivity {
 //			 * 只保存音频不进行播放接口,调用此接口请注释startSpeaking接口
 //			 * text:要合成的文本，uri:需要保存的音频全路径，listener:回调接口
 //			*/
-                String path = Environment.getExternalStorageDirectory() + "/tts.pcm";
+//                String path = Environment.getExternalStorageDirectory() + "/tts.pcm";
                 //	int code = mTts.synthesizeToUri(texts, path, mTtsListener);
 
                 if (code != ErrorCode.SUCCESS) {
@@ -338,4 +419,5 @@ public class SpeechSynthesisActivity extends BaseActivity {
             mTts.destroy();
         }
     }
+
 }

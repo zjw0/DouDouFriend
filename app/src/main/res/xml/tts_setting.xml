@@ -19,6 +19,7 @@
         android:defaultValue="50"
         android:summary="默认值：50 "
         android:title="音量" />
+
     <ListPreference
         android:defaultValue="3"
         android:entries="@array/stream_entries"
