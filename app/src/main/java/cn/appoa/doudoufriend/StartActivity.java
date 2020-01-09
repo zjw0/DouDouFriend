@@ -8,6 +8,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import cn.appoa.doudoufriend.base.BaseActivity;
 
 
@@ -22,12 +25,14 @@ public class StartActivity extends BaseActivity
         setContent(R.layout.activity_start);
     }
 
-    private ImageView iv_start;
+    private ImageView iv_start,iv_start_gif;
 
     @Override
     public void initView() {
         super.initView();
         iv_start = findViewById(R.id.iv_start);
+        iv_start_gif = findViewById(R.id.iv_start_gif);
+        Glide.with(mActivity).load(R.drawable.icon_start).diskCacheStrategy(DiskCacheStrategy.ALL).into(iv_start_gif);
     }
 
     @Override
@@ -45,7 +50,7 @@ public class StartActivity extends BaseActivity
      */
     protected void startAnim() {
         AlphaAnimation aa = new AlphaAnimation(0.1f, 1.0f);
-        aa.setDuration(1000);
+        aa.setDuration(6500);
         iv_start.startAnimation(aa);
         aa.setAnimationListener(this);
     }

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    android:background="#e1f7ff">
 
     <ImageView
         android:id="@+id/iv_start"
@@ -10,7 +10,16 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:scaleType="fitXY"
-        android:src="@drawable/logo"
+        android:src="@drawable/icon_start"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_start_gif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_start"
+        android:visibility="visible" />
 
 </RelativeLayout>
