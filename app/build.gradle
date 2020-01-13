@@ -76,6 +76,9 @@ dependencies {
     implementation 'com.wangzhen:dark-status-bar:1.0.0'
     implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.4'
     implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.4'
+    implementation 'com.github.zjw0.MyAfWork:QrCodeScan:1.0.4'
+    implementation 'com.github.zjw0.MyAfWork:AndroidImageCropper:1.0.4'
+    implementation 'com.github.zjw0.MyAfWork:WxVoiceSelector:1.0.4'
     //日历框架
     implementation 'com.necer.ncalendar:ncalendar:4.3.8'
     implementation 'com.jakewharton:butterknife:8.8.1'

@@ -37,9 +37,11 @@ public class StartActivity extends BaseActivity
 
     @Override
     public void initData() {
-        String[] permissions = {
+        String[] permissions = new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.RECORD_AUDIO
         };
         requestPermissions(permissions, null);
         startAnim();

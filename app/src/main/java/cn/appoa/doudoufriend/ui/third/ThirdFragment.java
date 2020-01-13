@@ -1,6 +1,7 @@
 package cn.appoa.doudoufriend.ui.third;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,8 +22,10 @@ import cn.appoa.doudoufriend.adapter.UserMenuListAdapter;
 import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.UserMenuList;
 import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
+import cn.appoa.doudoufriend.ui.third.activity.CoordinatorLayoutActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
 import cn.appoa.doudoufriend.ui.third.activity.ShowBigImageListActivity;
+import cn.appoa.doudoufriend.ui.third.activity.VoiceRecordingActivity;
 import cn.appoa.doudoufriend.ui.third.speech.SpeechSynthesisActivity;
 
 /**
@@ -63,6 +66,8 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
         menuLists.add(new UserMenuList(1, R.drawable.menu1, "添加月记", AddDateActivity.class));
         menuLists.add(new UserMenuList(2, R.drawable.menu1, "更多设置", SettingActivity.class));
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音合成", SpeechSynthesisActivity.class));
+        menuLists.add(new UserMenuList(3, R.drawable.menu1, "扫描二维码", CoordinatorLayoutActivity.class));
+        menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音录制", VoiceRecordingActivity.class));
         menuListAdapter.setNewData(menuLists);
         menuListAdapter.setOnItemClickListener(this);
     }
@@ -81,18 +86,19 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         UserMenuList item = menuLists.get(position);
         if (item.clazz == null) return;
-        Intent intent = null;
-        switch (item.MenuIntro) {
-            case "添加月记":
-                intent = new Intent(mActivity, item.clazz);
-                break;
-            case "更多设置":
-                intent = new Intent(mActivity, item.clazz);
-                break;
-            case "语音合成":
-                intent = new Intent(mActivity, item.clazz);
-                break;
-        }
-        startActivity(intent);
+//        Intent intent = null;
+//        switch (item.MenuIntro) {
+//            case "添加月记":
+//                intent = new Intent(mActivity, item.clazz);
+//                break;
+//            case "更多设置":
+//                intent = new Intent(mActivity, item.clazz);
+//                break;
+//            case "语音合成":
+//                intent = new Intent(mActivity, item.clazz);
+//                break;
+//        }
+//        startActivity(intent);
+        startActivity(new Intent(mActivity, item.clazz));
     }
 }
