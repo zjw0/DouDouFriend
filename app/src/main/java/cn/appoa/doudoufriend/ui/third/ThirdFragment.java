@@ -23,6 +23,7 @@ import cn.appoa.doudoufriend.base.BaseFragment;
 import cn.appoa.doudoufriend.bean.UserMenuList;
 import cn.appoa.doudoufriend.ui.third.activity.AddDateActivity;
 import cn.appoa.doudoufriend.ui.third.activity.CoordinatorLayoutActivity;
+import cn.appoa.doudoufriend.ui.third.activity.ExplosionEffectActivity;
 import cn.appoa.doudoufriend.ui.third.activity.SettingActivity;
 import cn.appoa.doudoufriend.ui.third.activity.ShowBigImageListActivity;
 import cn.appoa.doudoufriend.ui.third.activity.VoiceRecordingActivity;
@@ -68,6 +69,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音合成", SpeechSynthesisActivity.class));
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "扫描二维码", CoordinatorLayoutActivity.class));
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音录制", VoiceRecordingActivity.class));
+        menuLists.add(new UserMenuList(3, R.drawable.menu1, "爆炸效果", ExplosionEffectActivity.class));
         menuListAdapter.setNewData(menuLists);
         menuListAdapter.setOnItemClickListener(this);
     }

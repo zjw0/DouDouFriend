@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:scaleType="fitXY"
-        android:src="@drawable/icon_start"
+        android:background="#e1f7ff"
         android:visibility="invisible" />
 
     <ImageView

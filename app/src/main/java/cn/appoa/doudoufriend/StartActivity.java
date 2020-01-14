@@ -52,7 +52,7 @@ public class StartActivity extends BaseActivity
      */
     protected void startAnim() {
         AlphaAnimation aa = new AlphaAnimation(0.1f, 1.0f);
-        aa.setDuration(6500);
+        aa.setDuration(6000);
         iv_start.startAnimation(aa);
         aa.setAnimationListener(this);
     }
