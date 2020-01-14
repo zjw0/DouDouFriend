@@ -164,7 +164,7 @@ public class AddDateActivity extends BaseActivity
         //monthDate.setId(1);
         monthDate.setStartDate(AtyUtils.getText(tv_start));
         monthDate.setEndDate(AtyUtils.getText(tv_end));
-        monthDate.setDays(days);
+        monthDate.setDays(days+1);
         monthDate.save();
         AtyUtils.showShort(mActivity, "添加成功", false);
         finish();
