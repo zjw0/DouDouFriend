@@ -2,10 +2,22 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+//        config {
+//            keyAlias 'doudoufriend'
+//            keyPassword '100605'
+//            storeFile file('D:/MyAndroidSpace/studio-demo/DouDouFriend/keystore/doudoufriend.jks')
+//            storePassword '100605'
+//        }
+        debug {
             keyAlias 'doudoufriend'
             keyPassword '100605'
-            storeFile file('D:/MyAndroidSpace/studio-demo/DouDouFriend/keystore/doudoufriend.jks')
+            storeFile file('F:\\MyAndroidSpace\\studio-demo\\MyWork\\keystore\\doudoufriend.jks')
+            storePassword '100605'
+        }
+        release {
+            keyAlias 'doudoufriend'
+            keyPassword '100605'
+            storeFile file('F:\\MyAndroidSpace\\studio-demo\\MyWork\\keystore\\doudoufriend.jks')
             storePassword '100605'
         }
     }
@@ -26,9 +38,9 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
     android.applicationVariants.all { variant ->
