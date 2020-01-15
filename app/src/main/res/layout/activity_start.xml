@@ -30,7 +30,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="@dimen/padding_huge"
-        android:layout_marginTop="@dimen/height_little"
+        android:layout_marginTop="@dimen/padding_huge"
         android:background="@drawable/shape_jump"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/text_big"

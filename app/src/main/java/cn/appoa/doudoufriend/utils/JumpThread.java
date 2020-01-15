@@ -52,7 +52,8 @@ public class JumpThread implements Runnable {
         Intent intent = new Intent(activity, MainActivity.class);
         activity.startActivity(intent);
         //activity切换动画
-        activity.overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+//        activity.overridePendingTransition(R.anim.screen_zoom_in, R.anim.screen_zoom_out);
+        activity.overridePendingTransition(R.anim.start_alpha, R.anim.end_alpha);
         activity.finish();
     }
     @Override
