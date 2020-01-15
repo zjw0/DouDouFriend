@@ -22,4 +22,18 @@
         android:src="@drawable/icon_start"
         android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/tv_jump"
+        style="@style/SimpleTextView"
+        android:layout_width="@dimen/height_big"
+        android:layout_height="@dimen/height_little"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="@dimen/padding_huge"
+        android:layout_marginTop="@dimen/height_little"
+        android:background="@drawable/shape_jump"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/text_big"
+        android:visibility="gone"/>
+
 </RelativeLayout>
