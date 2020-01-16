@@ -7,13 +7,17 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-//        classpath 'com.android.tools.build:gradle:3.5.3'
+//        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         //classpath 'com.jakewharton:butterknife-gradle-plugin:8.8.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        //微信热更新tinker
+        //classpath ('com.tencent.tinker:tinker-patch-gradle-plugin:1.7.11')
+        // bugly  tinkersupport插件, 其中lastest.release指拉取最新版本，也可以指定明确版本号，例如1.0.4
+        classpath "com.tencent.bugly:tinker-support:1.1.5"
     }
 }
 

@@ -5,6 +5,8 @@ import android.support.multidex.MultiDex;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
 import org.litepal.LitePal;
 
@@ -21,6 +23,11 @@ public class MyApplication extends AfApplication {
 
     @Override
     public void initApplication() {
+        // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
+        // 调试时，将第三个参数改为true
+        Bugly.init(this, "6d8625ee9c", true);
+//        Bugly.init(this, "6d8625ee9c", false);
+
         //AtyUtils.isDebug = false;
         // 分包
         MultiDex.install(this);
@@ -40,5 +47,8 @@ public class MyApplication extends AfApplication {
         super.attachBaseContext(base);
         // 分包
         MultiDex.install(base);
+
+        // 安装tinker
+        Beta.installTinker();
     }
 }

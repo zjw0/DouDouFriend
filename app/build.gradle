@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// 依赖插件脚本
+apply from: 'tinker-support.gradle'
 
 android {
     signingConfigs {
@@ -21,19 +23,21 @@ android {
             storePassword '100605'
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion 28
     defaultConfig {
         applicationId "cn.appoa.doudoufriend"
         minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 28
+        versionCode 3
+        versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         signingConfig signingConfigs.release
         ndk {
+            //设置支持的SO库架构
+            //abiFilters 'armeabi'
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi-v7a', 'arm64-v8a'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
 //            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
@@ -53,10 +57,12 @@ android {
         variant.outputs.all {
             def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
             if (variant.buildType.name.equals('debug')) {
-                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}_debug.apk"
+//                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}_debug.apk"
+                outputFileName = "app-release.apk"
             }
             if (variant.buildType.name.equals('release')) {
-                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}.apk"
+//                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}.apk"
+                outputFileName = "app-release.apk"
             }
         }
     }
@@ -69,6 +75,11 @@ android {
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 
@@ -96,6 +107,7 @@ dependencies {
 //    implementation 'com.github.zjw0.MyAfWork:WxImageSelector:1.0.4'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.wangzhen:dark-status-bar:1.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.4'
     implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.4'
     implementation 'com.github.zjw0.MyAfWork:QrCodeScan:1.0.4'
@@ -111,12 +123,28 @@ dependencies {
     //语音合成
     implementation files('libs/Msc.jar')
     //implementation files('F:/MyAndroidSpace/studio-demo/MyWork/libs/Msc.jar')
+
+/*    //依赖这个原因后面讲
+//    implementation 'com.android.support:multidex:1.0.3'
+    //可选，用于生成application类
+//    provided('com.tencent.tinker:tinker-android-anno:1.7.11')
+    compileOnly('com.tencent.tinker:tinker-android-anno:1.7.11')
+    //tinker的核心库
+    api('com.tencent.tinker:tinker-android-lib:1.7.11')*/
+
+    //注释掉原有bugly的仓库
+    //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.3.4
+    implementation 'com.tencent.bugly:crashreport_upgrade:1.3.6'
+    // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）
+    implementation 'com.tencent.tinker:tinker-android-lib:1.9.9'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
 }
 
 configurations.all {
     resolutionStrategy {
 //        force 'com.android.support:support-v4:27.1.1'
-        force 'com.android.support:design:27.1.1'
+//        force 'com.android.support:design:27.1.1'
+        force 'com.android.support:design:28.0.0'
     }
 }
 
