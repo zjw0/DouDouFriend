@@ -25,7 +25,7 @@ public class MyApplication extends AfApplication {
     public void initApplication() {
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
-        Bugly.init(this, "6d8625ee9c", true);
+        Bugly.init(this, "5d325a5def", true);
 //        Bugly.init(this, "6d8625ee9c", false);
 
         //AtyUtils.isDebug = false;

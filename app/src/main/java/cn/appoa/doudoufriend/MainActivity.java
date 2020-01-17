@@ -13,6 +13,7 @@ import cn.appoa.doudoufriend.presenter.MainPresenter;
 import cn.appoa.doudoufriend.ui.first.FirstFragment;
 import cn.appoa.doudoufriend.ui.second.SecondFragment;
 import cn.appoa.doudoufriend.ui.third.ThirdFragment;
+import cn.appoa.doudoufriend.utils.Bug;
 import cn.appoa.doudoufriend.view.MainView;
 import zm.bus.event.BusProvider;
 
@@ -145,6 +146,7 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void initData() {
+        Bug.bug();
 //        String[] permissions = {
 //                Manifest.permission.READ_EXTERNAL_STORAGE,
 //                Manifest.permission.WRITE_EXTERNAL_STORAGE};

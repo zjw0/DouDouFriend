@@ -1,11 +1,13 @@
 apply plugin: 'com.tencent.bugly.tinker-support'
 
 def bakPath = file("${buildDir}/bakApk/")
+def appName = rootProject.ext.config.appName
 
 /**
  * 此处填写每次构建生成的基准包目录
  */
-def baseApkDir = "app-2020-01-16-16-36"
+//def baseApkDir = "app-0117-18-00-00"
+def baseApkDir = rootProject.ext.config.appName
 
 /**
  * 对于插件各参数的详细解析请参考
@@ -34,8 +36,8 @@ tinkerSupport {
     baseApkResourceMapping = "${bakPath}/${baseApkDir}/app-release-R.txt"
 
     // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性
-    tinkerId = "base-1.0.3"
-//    tinkerId = "patch-1.0.4"
+    tinkerId = rootProject.ext.config.tinkerId
+//    tinkerId = "base-1.0.1"
 
     // 构建多渠道补丁时使用
     // buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
@@ -58,7 +60,7 @@ tinkerSupport {
  * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
  */
 tinkerPatch {
-    //oldApk ="${bakPath}/${appName}/app-release.apk"
+    oldApk ="${bakPath}/${appName}/app-release.apk"
     ignoreWarning = false
     useSign = true
     dex {
@@ -84,8 +86,9 @@ tinkerPatch {
     }
     buildConfig {
         keepDexApply = false
-        //tinkerId = "1.0.1-base"
-        //applyMapping = "${bakPath}/${appName}/app-release-mapping.txt" //  可选，设置mapping文件，建议保持旧apk的proguard混淆方式
-        //applyResourceMapping = "${bakPath}/${appName}/app-release-R.txt" // 可选，设置R.txt文件，通过旧apk文件保持ResId的分配
+//        tinkerId = "1.0.1.20200117-path"
+        tinkerId = rootProject.ext.config.tinkerId
+        applyMapping = "${bakPath}/${appName}/app-release-mapping.txt" //  可选，设置mapping文件，建议保持旧apk的proguard混淆方式
+        applyResourceMapping = "${bakPath}/${appName}/app-release-R.txt" // 可选，设置R.txt文件，通过旧apk文件保持ResId的分配
     }
 }

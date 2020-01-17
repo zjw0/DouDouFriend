@@ -58,18 +58,8 @@ public class StartActivity extends BaseActivity
         }, 300);
     }
 
-    private String bug(){
-        String str1 = "$";
-        AtyUtils.i("一个字符length","是" + str1.length());
-//        String str2 = null;
-//        Log.e("str2","是" + str2.length());
-//        return "This is bug";
-        return "This no bug";
-    }
-
     @Override
     public void initData() {
-        bug();
         String[] permissions = new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,

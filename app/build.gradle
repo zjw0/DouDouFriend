@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 // 依赖插件脚本
 apply from: 'tinker-support.gradle'
 
+def bakPath = file("${buildDir}/bakApk/")
+def appName = rootProject.ext.config.appName
+
 android {
     signingConfigs {
 //        config {
@@ -28,8 +31,8 @@ android {
         applicationId "cn.appoa.doudoufriend"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 1
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         signingConfig signingConfigs.release
@@ -58,7 +61,7 @@ android {
             def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("GMT+08"))
             if (variant.buildType.name.equals('debug')) {
 //                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}_debug.apk"
-                outputFileName = "app-release.apk"
+                outputFileName = "app-release_debug.apk"
             }
             if (variant.buildType.name.equals('release')) {
 //                outputFileName = "DouDouFriend_${date}_${versionName}_${versionCode}.apk"
