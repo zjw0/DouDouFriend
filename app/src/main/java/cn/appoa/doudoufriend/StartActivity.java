@@ -51,8 +51,10 @@ public class StartActivity extends BaseActivity
             @Override
             public void run() {
                 tv_jump.setVisibility(View.VISIBLE);
-                tv_jump.setText("跳过 6");
-                Thread t = new Thread(new JumpThread(tv_jump,6,mActivity));
+//                tv_jump.setText("跳过 6");
+//                Thread t = new Thread(new JumpThread(tv_jump,6,mActivity));
+                tv_jump.setText("跳过 10");
+                Thread t = new Thread(new JumpThread(tv_jump,10,mActivity));
                 t.start();
             }
         }, 300);
@@ -112,7 +114,8 @@ public class StartActivity extends BaseActivity
      */
     protected void startAnim() {
         AlphaAnimation aa = new AlphaAnimation(0.1f, 1.0f);
-        aa.setDuration(6000);
+//        aa.setDuration(6000);
+        aa.setDuration(10000);
         iv_start.startAnimation(aa);
         aa.setAnimationListener(this);
     }
