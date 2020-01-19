@@ -146,7 +146,6 @@ public class MainActivity extends BaseActivity<MainPresenter>
 
     @Override
     public void initData() {
-        Bug.bug();
 //        String[] permissions = {
 //                Manifest.permission.READ_EXTERNAL_STORAGE,
 //                Manifest.permission.WRITE_EXTERNAL_STORAGE};

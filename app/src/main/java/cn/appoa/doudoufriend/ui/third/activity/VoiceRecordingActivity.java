@@ -17,6 +17,7 @@ import cn.appoa.aframework.titlebar.BaseTitlebar;
 import cn.appoa.aframework.titlebar.DefaultTitlebar;
 import cn.appoa.doudoufriend.R;
 import cn.appoa.doudoufriend.base.BaseActivity;
+import cn.appoa.doudoufriend.utils.Bug;
 import cn.appoa.wxvoiceselector.EaseVoicePlayerView;
 import cn.appoa.wxvoiceselector.EaseVoiceRecorderView;
 
@@ -53,11 +54,12 @@ public class VoiceRecordingActivity extends BaseActivity implements View.OnClick
         rl_voice_delete = (RelativeLayout) findViewById(R.id.rl_voice_delete);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void initData() {
-        tv_push_to_talk.setOnTouchListener(new View.OnTouchListener() {
+        Bug.bug();
 
-            @SuppressLint("ClickableViewAccessibility")
+        tv_push_to_talk.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (voiceRecorderView != null) {

@@ -1,9 +1,9 @@
 ext {
     config = [
-            appName : 'app-0118-17-12-50',
-            tinkerId: '1.0.3.20200118-patch',
-//            appName : 'app-0118-00-00-00',
-//            tinkerId: '1.0.1.20200118-base',
+//            appName : 'app-0119-15-09-41',
+//            tinkerId: '1.0.2.20200118-patch',
+            appName : 'app-0119-00-00-00',
+            tinkerId: '1.0.1.20200119-base',
     ]
 }
 

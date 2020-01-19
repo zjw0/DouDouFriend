@@ -37,6 +37,8 @@ public class MyApplication extends AfApplication {
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
 //        Bugly.init(this, "542d78b688", true);
+//        Bugly.init(this, "9197d1db35", true);
+
 
         //AtyUtils.isDebug = false;
         // 分包
@@ -109,7 +111,7 @@ public class MyApplication extends AfApplication {
         //设置开发设备，默认为false，上传补丁如果下发范围指定为"开发设备"，需要调用此接口来标识开发设备
         Bugly.setIsDevelopmentDevice(this, true);
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId,调试时将第三个参数设置为true
-        Bugly.init(this, "9197d1db35", true);
+        Bugly.init(this, "021f4493a7", true);
 
 
 
