@@ -14,7 +14,7 @@ public class TimeDifferencesUtils {
      * 获取时间差
      */
     public static int getTimeDifferences(String time1, String time2) {
-        if(DateUtils.getTimeCompareSize(time1,time2)){
+//        if(DateUtils.getTimeCompareSize(time1,time2)){
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 Date d1 = df.parse(time1);
@@ -30,7 +30,7 @@ public class TimeDifferencesUtils {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }
+//        }
         return 0;
     }
 }

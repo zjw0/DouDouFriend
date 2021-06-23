@@ -26,5 +26,7 @@
     <color name="hollowCircleColor">#00c3aa</color>
     <color name="selectCircleColor">#00c3aa</color>
     <color name="todaySolarTextColor">#ff00ff</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="color_white">#ffffff</color>
 
 </resources>

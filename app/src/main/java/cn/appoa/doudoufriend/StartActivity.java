@@ -4,8 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
+
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -43,6 +43,7 @@ public class StartActivity extends BaseActivity
 
     @Override
     public void initView() {
+        setTheme(R.style.AppThemeFullscreen);
         super.initView();
         iv_start = findViewById(R.id.iv_start);
         iv_start_gif = findViewById(R.id.iv_start_gif);
@@ -51,10 +52,10 @@ public class StartActivity extends BaseActivity
             @Override
             public void run() {
                 tv_jump.setVisibility(View.VISIBLE);
+//                tv_jump.setText("跳过 6");
+//                Thread t = new Thread(new JumpThread(tv_jump,6,mActivity));
                 tv_jump.setText("跳过 6");
                 Thread t = new Thread(new JumpThread(tv_jump,6,mActivity));
-//                tv_jump.setText("跳过 10");
-//                Thread t = new Thread(new JumpThread(tv_jump,10,mActivity));
                 t.start();
             }
         }, 300);

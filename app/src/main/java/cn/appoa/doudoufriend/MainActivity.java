@@ -2,7 +2,7 @@ package cn.appoa.doudoufriend;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -13,7 +13,6 @@ import cn.appoa.doudoufriend.presenter.MainPresenter;
 import cn.appoa.doudoufriend.ui.first.FirstFragment;
 import cn.appoa.doudoufriend.ui.second.SecondFragment;
 import cn.appoa.doudoufriend.ui.third.ThirdFragment;
-import cn.appoa.doudoufriend.utils.Bug;
 import cn.appoa.doudoufriend.view.MainView;
 import zm.bus.event.BusProvider;
 

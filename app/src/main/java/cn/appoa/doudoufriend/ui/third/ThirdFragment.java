@@ -1,11 +1,10 @@
 package cn.appoa.doudoufriend.ui.third;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +63,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void initData() {
         menuLists.clear();
-        menuLists.add(new UserMenuList(1, R.drawable.menu1, "添加月记", AddDateActivity.class));
+        menuLists.add(new UserMenuList(1, R.drawable.menu1, "添加周期", AddDateActivity.class));
         menuLists.add(new UserMenuList(2, R.drawable.menu1, "更多设置", SettingActivity.class));
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "语音合成", SpeechSynthesisActivity.class));
         menuLists.add(new UserMenuList(3, R.drawable.menu1, "扫描二维码", CoordinatorLayoutActivity.class));

@@ -16,13 +16,14 @@ android {
         debug {
             keyAlias 'doudoufriend'
             keyPassword '100605'
-            storeFile file('F:\\MyAndroidSpace\\studio-demo\\MyWork\\keystore\\doudoufriend.jks')
+            storeFile file('/Users/zhaojunwei/Desktop/WorkProject/android/AndroidDemo/FriendDate/DouDouFriend/keystore/doudoufriend.jks')
             storePassword '100605'
         }
         release {
             keyAlias 'doudoufriend'
             keyPassword '100605'
-            storeFile file('F:\\MyAndroidSpace\\studio-demo\\MyWork\\keystore\\doudoufriend.jks')
+//            storeFile file('F:\\MyAndroidSpace\\studio-demo\\MyWork\\keystore\\doudoufriend.jks')
+            storeFile file('/Users/zhaojunwei/Desktop/WorkProject/android/AndroidDemo/FriendDate/DouDouFriend/keystore/doudoufriend.jks')
             storePassword '100605'
         }
     }
@@ -35,15 +36,15 @@ android {
 //        versionName "1.0.1"
         versionCode 2
         versionName "1.0.2"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         multiDexEnabled true
         signingConfig signingConfigs.release
         ndk {
             //设置支持的SO库架构
             //abiFilters 'armeabi'
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
-//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
     buildTypes {
@@ -110,19 +111,24 @@ dependencies {
 //    implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.3'
 //    implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.3'
 //    implementation 'com.github.zjw0.MyAfWork:WxImageSelector:1.0.4'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'com.wangzhen:dark-status-bar:1.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
-    implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.4'
-    implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.4'
-    implementation 'com.github.zjw0.MyAfWork:QrCodeScan:1.0.4'
-    implementation 'com.github.zjw0.MyAfWork:AndroidImageCropper:1.0.4'
-    implementation 'com.github.zjw0.MyAfWork:WxVoiceSelector:1.0.4'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+//    implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.4'
+    implementation 'com.github.zjw0.MyAfWork:AFramework:1.0.6'
+    implementation 'com.github.zjw0.MyAfWork:SmartRefreshLayoutFragment:1.0.6'
+    implementation 'com.github.zjw0.MyAfWork:QrCodeScan:1.0.6'
+    implementation 'com.github.zjw0.MyAfWork:AndroidImageCropper:1.0.6'
+    implementation 'com.github.zjw0.MyAfWork:WxVoiceSelector:1.0.6'
     //日历框架
-    implementation 'com.necer.ncalendar:ncalendar:4.3.8'
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+//    implementation 'com.necer.ncalendar:ncalendar:4.3.8'
+    implementation 'com.necer.ncalendar:ncalendar:5.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    implementation 'com.jakewharton:butterknife:8.8.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //ButterKnife的sdk
+    implementation 'com.jakewharton:butterknife:10.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
     //数据库框架
     implementation 'org.litepal.android:java:3.0.0'
     //语音合成

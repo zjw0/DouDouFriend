@@ -1,10 +1,9 @@
 package cn.appoa.doudoufriend.app;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.StrictMode;
-import android.support.multidex.MultiDex;
-import android.util.Log;
+
+import androidx.multidex.MultiDex;
+
 import android.widget.Toast;
 
 import com.iflytek.cloud.SpeechConstant;
@@ -12,7 +11,6 @@ import com.iflytek.cloud.SpeechUtility;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.interfaces.BetaPatchListener;
-import com.tencent.bugly.beta.upgrade.UpgradeStateListener;
 
 import org.litepal.LitePal;
 

@@ -30,7 +30,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 外存储写权限，构建语法需要用到此权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 外存储读权限，构建语法需要用到此权限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 配置权限，用来记录应用配置信息 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- 手机定位信息，用来为语义等功能提供定位，提供更精准的服务 -->
+<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> &lt;!&ndash; 手机定位信息，用来为语义等功能提供定位，提供更精准的服务 &ndash;&gt;-->
     <!-- 定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 如需使用人脸识别，还要添加：摄相头权限，拍照需要用到 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -50,7 +50,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
 
-        <activity android:name=".ui.third.activity.ExplosionEffectActivity"></activity>
+        <activity android:name=".ui.third.activity.ExplosionEffectActivity"/>
         <activity android:name=".ui.third.activity.VoiceRecordingActivity" />
         <activity android:name=".ui.third.activity.CoordinatorLayoutActivity" /> <!-- 设计稿的尺寸 -->
         <meta-data
@@ -69,7 +69,7 @@
             android:name="IFLYTEK_CHANNEL"
             android:value="MyVoiceSynthesis" /> <!-- provider authorities必须为【包名+.fileprovider】 -->
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -92,7 +92,8 @@
         <!-- 启动页 -->
         <activity
             android:name=".StartActivity"
-            android:theme="@style/AppThemeFullscreen">
+            android:theme="@style/launcher">
+<!--            android:theme="@style/AppThemeFullscreen">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

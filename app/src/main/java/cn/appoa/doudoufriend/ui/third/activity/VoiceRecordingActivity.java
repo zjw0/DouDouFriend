@@ -1,7 +1,6 @@
 package cn.appoa.doudoufriend.ui.third.activity;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.MotionEvent;

@@ -1,7 +1,7 @@
 package cn.appoa.doudoufriend.base;
 
 import android.content.Intent;
-import android.support.v7.widget.SimpleItemAnimator;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import com.scwang.smartrefresh.layout.fragment.PullToRefreshRecyclerViewFragment;
 

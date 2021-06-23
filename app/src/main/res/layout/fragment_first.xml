@@ -67,6 +67,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
@@ -81,10 +82,10 @@
         <com.necer.calendar.MonthCalendar
             android:id="@+id/calendar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/month_calendar_height"
-            app:hollowCircleColor="@color/hollowCircleColor"
-            app:selectCircleColor="@color/selectCircleColor"
-            app:todaySolarTextColor="@color/todaySolarTextColor" />
+            android:layout_height="@dimen/month_calendar_height" />
+<!--        app:hollowCircleColor="@color/hollowCircleColor"-->
+<!--        app:selectCircleColor="@color/selectCircleColor"-->
+<!--        app:todaySolarTextColor="@color/todaySolarTextColor"-->
 
     </LinearLayout>
 
@@ -128,17 +129,37 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_confirm_add"
-        style="@style/SimpleTextView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_normal"
-        android:layout_marginLeft="@dimen/padding_big"
-        android:layout_marginTop="@dimen/padding_huge"
-        android:layout_marginRight="@dimen/padding_big"
-        android:background="@drawable/shape_solid_theme_50dp"
-        android:text="添加"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/text_big" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_confirm_add"
+            style="@style/SimpleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_normal"
+            android:layout_marginLeft="@dimen/padding_big"
+            android:layout_marginTop="@dimen/padding_huge"
+            android:layout_marginRight="@dimen/padding_big"
+            android:background="@drawable/shape_solid_theme_50dp"
+            android:text="添加"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_big" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_confirm_save"
+            style="@style/SimpleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_normal"
+            android:layout_marginLeft="@dimen/padding_big"
+            android:layout_marginTop="@dimen/padding_huge"
+            android:layout_marginRight="@dimen/padding_big"
+            android:background="@drawable/shape_solid_green_50dp"
+            android:text="保存"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_big" />
+
+    </RelativeLayout>
 
 </LinearLayout>
